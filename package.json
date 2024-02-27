@@ -1,0 +1,12 @@
+{
+  "name": "voyage",
+  "version": "1.0.0",
+  "description": "Frontend and Backend for Voyage",
+  "main": "index.js",
+  "repository": "https://github.com/arkarsg/voyage.git",
+  "author": "arkarsg <alxarkar@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky"
+  }
+}
