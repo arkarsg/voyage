@@ -10,8 +10,7 @@
     "format": "prettier --no-error-on-unmatched-pattern --write functions/**/*.{js, json}",
     "lint": "eslint --no-error-on-unmatched-pattern \"functions/**/*.{js, json}\" --fix",
     "test": "jest --passWithNoTests",
-    "precommit": "yarn format && yarn lint && yarn jest",
-    "prepare": "husky"
+    "precommit": "yarn format && yarn lint && yarn jest"
   },
   "devDependencies": {
     "eslint": ">=5.16.0",
