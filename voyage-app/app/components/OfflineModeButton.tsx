@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {StyleSheet, Switch, Text, View} from 'react-native';
-import {useRealm} from '@realm/react';
+import React, { useState } from 'react';
+import { StyleSheet, Switch, Text, View } from 'react-native';
+import { useRealm } from '@realm/react';
 
-export function OfflineModeButton() {
+export function OfflineModeButton(): React.ReactElement {
   const realm = useRealm();
 
   const [pauseSync, togglePauseSync] = useState(false);
@@ -27,7 +27,7 @@ export function OfflineModeButton() {
 }
 
 const styles = StyleSheet.create({
-  icon: {padding: 12},
+  icon: { padding: 12 },
   toggleRow: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -1,24 +1,26 @@
 import React from 'react';
-import Realm from 'realm';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
+import type Realm from 'realm';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
-import {shadows} from '../styles/shadows';
+import { shadows } from '../styles/shadows';
 import colors from '../styles/colors';
-import {Task} from '../models/Task';
+import { Task } from '../models/Task';
 
-type TaskItemProps = {
+interface TaskItemProps {
   task: Task & Realm.Object;
   onToggleStatus: () => void;
   onDelete: () => void;
-};
+}
 
-export const TaskItem = React.memo<TaskItemProps>(
-  ({task, onToggleStatus, onDelete}) => {
+export const TaskItem: React.FC<TaskItemProps> = React.memo<TaskItemProps>(
+  ({ task, onToggleStatus, onDelete }) => {
     return (
       <View style={styles.task}>
         <Pressable
           onPress={onToggleStatus}
-          style={[styles.status, task.isComplete && styles.completed]}>
+          style={[styles.status, task.isComplete && styles.completed]}
+        >
           <Text style={styles.icon}>{task.isComplete ? '✓' : '○'}</Text>
         </Pressable>
         <View style={styles.descriptionContainer}>
@@ -31,8 +33,15 @@ export const TaskItem = React.memo<TaskItemProps>(
         </Pressable>
       </View>
     );
-  },
+  }
 );
+
+TaskItem.displayName = 'Task item';
+TaskItem.propTypes = {
+  task: PropTypes.instanceOf(Task).isRequired,
+  onToggleStatus: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 const styles = StyleSheet.create({
   task: {

@@ -1,22 +1,20 @@
 import React from 'react';
 
-import {Task} from './models/Task';
-import {TaskManager} from './components/TaskManager';
+import { Task } from './models/Task';
+import { TaskManager } from './components/TaskManager';
 
-import {useQuery} from '@realm/react';
+import { useQuery } from '@realm/react';
 
-export const AppNonSync = () => {
+export const AppNonSync: React.FC = () => {
   const [showDone, setShowDone] = React.useState(false);
   const tasks = useQuery(
     Task,
-    collection =>
+    (collection) =>
       showDone
         ? collection.sorted('createdAt')
         : collection.filtered('isComplete == false').sorted('createdAt'),
-    [showDone],
+    [showDone]
   );
 
-  return (
-    <TaskManager tasks={tasks} setShowDone={setShowDone} showDone={showDone} />
-  );
+  return <TaskManager tasks={tasks} setShowDone={setShowDone} showDone={showDone} />;
 };

@@ -1,18 +1,17 @@
 import React from 'react';
-import {AppProvider, UserProvider} from '@realm/react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import { AppProvider, UserProvider, RealmProvider } from '@realm/react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
-import {schemas} from './models';
-import {LoginScreen} from './components/LoginScreen';
+import { schemas } from './models';
+import { LoginScreen } from './components/LoginScreen';
 import colors from './styles/colors';
-import {AppSync} from './AppSync';
+import { AppSync } from './AppSync';
 
-import {RealmProvider} from '@realm/react';
-import {OpenRealmBehaviorType, OpenRealmTimeOutBehavior} from 'realm';
+import { OpenRealmBehaviorType, OpenRealmTimeOutBehavior } from 'realm';
 
 export const AppWrapperSync: React.FC<{
   appId: string;
-}> = ({appId}) => {
+}> = ({ appId }) => {
   // If we are logged in, add the sync configuration the the RealmProvider and render the app
   return (
     <SafeAreaView style={styles.screen}>
@@ -29,7 +28,8 @@ export const AppWrapperSync: React.FC<{
                   // In v11 the enums are not set up correctly, so we need to use the string values
                   OpenRealmTimeOutBehavior?.OpenLocalRealm ?? 'openLocalRealm',
               },
-            }}>
+            }}
+          >
             <AppSync />
           </RealmProvider>
         </UserProvider>

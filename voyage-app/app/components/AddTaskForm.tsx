@@ -1,25 +1,18 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  Platform,
-  StyleSheet,
-} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Pressable, Platform, StyleSheet } from 'react-native';
 
-import {buttonStyles} from '../styles/button';
+import { buttonStyles } from '../styles/button';
 import colors from '../styles/colors';
-import {shadows} from '../styles/shadows';
+import { shadows } from '../styles/shadows';
 
-type AddTaskFormProps = {
+interface AddTaskFormProps {
   onSubmit: (description: string) => void;
-};
+}
 
-export const AddTaskForm: React.FC<AddTaskFormProps> = ({onSubmit}) => {
+export const AddTaskForm: React.FC<AddTaskFormProps> = ({ onSubmit }) => {
   const [description, setDescription] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (): void => {
     onSubmit(description);
     setDescription('');
   };

@@ -1,4 +1,4 @@
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import colors from './colors';
 
 export const shadows = Platform.select({
