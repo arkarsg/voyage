@@ -4,7 +4,11 @@
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
-    "ios": "expo run:ios"
+    "ios": "expo run:ios",
+    "format": "prettier --no-error-on-unmatched-pattern --write **/*.{tsx, ts, js, json}",
+    "lint": "eslint --no-error-on-unmatched-pattern **/*.{tsx, ts, js, json} --fix",
+    "test": "jest --passWithNoTests",
+    "precommit": "yarn format && yarn lint && yarn test"
   },
   "dependencies": {
     "@realm/react": "^0.6.0",

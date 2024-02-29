@@ -1,1 +1,2 @@
-cd voyage-backend && yarn precommit
+cd voyage-backend && yarn precommit && cd ..
+cd voyage-app && yarn precommit && cd ..
