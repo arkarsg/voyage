@@ -1,2 +1,4 @@
+echo "🚀 Running precommit script on voyage-backend"
 cd voyage-backend && yarn precommit && cd ..
+echo "🚀 Running precommit script on voyage-app"
 cd voyage-app && yarn precommit && cd ..
