@@ -1,7 +1,21 @@
 {
-    "api-key": {
-        "name": "api-key",
-        "type": "api-key",
-        "disabled": true
-    }
+  "api-key": {
+    "name": "api-key",
+    "type": "api-key",
+    "disabled": true
+  },
+  "custom-token": {
+    "name": "custom-token",
+    "type": "custom-token",
+    "disabled": false,
+    "config": {
+      "audience": [],
+      "jwkURI": "https://dev-69730427.okta.com/oauth2/voyageauth/v1/keys",
+      "useJWKURI": true
+    },
+    "secret_config": {
+      "signingKeys": []
+    },
+    "metadata_fields": []
+  }
 }
