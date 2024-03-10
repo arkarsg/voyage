@@ -9,13 +9,31 @@
     "type": "custom-token",
     "disabled": false,
     "config": {
-      "audience": [],
-      "jwkURI": "https://dev-69730427.okta.com/oauth2/voyageauth/v1/keys",
+      "audience": ["https://touched-serval-64.clerk.accounts.dev"],
+      "jwkURI": "https://touched-serval-64.clerk.accounts.dev/.well-known/jwks.json",
+      "requireAnyAudience": false,
+      "signingAlgorithm": "",
       "useJWKURI": true
     },
     "secret_config": {
       "signingKeys": []
     },
-    "metadata_fields": []
+    "metadata_fields": [
+      {
+        "required": true,
+        "name": "name",
+        "field_name": "name"
+      },
+      {
+        "required": true,
+        "name": "email",
+        "field_name": "email"
+      },
+      {
+        "required": true,
+        "name": "id",
+        "field_name": "clerk_id"
+      }
+    ]
   }
 }
