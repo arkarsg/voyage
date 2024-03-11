@@ -30,7 +30,11 @@ async function addUserToCollection(authEvent) {
     .collection('User');
 
   const user = createUser(authEvent.user);
-  usersCollection.insertOne(user);
+  try {
+    return await usersCollection.insertOne(user);
+  } catch (err) {
+    console.error('Error inserting user:', err.message);
+  }
 }
 
 /**
