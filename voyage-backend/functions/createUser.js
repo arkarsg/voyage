@@ -44,7 +44,7 @@ async function addUserToCollection(authEvent) {
 function createUser(userObj) {
   return {
     _id: BSON.ObjectId(userObj.id),
-    email: data.email,
+    email: userObj.data.email,
   };
 }
 
