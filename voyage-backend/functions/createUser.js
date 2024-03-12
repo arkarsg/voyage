@@ -2,10 +2,16 @@
 Access the providers associated with the authEvent:
 const providers = authEvent.providers
 
-Functions run by Triggers are run as System users and have full access to Services, Functions, and MongoDB Data.
+Functions run by Triggers are run as System users and have full access to
+Services, Functions, and MongoDB Data.
 
 Access a mongodb service:
-const collection = context.services.get("<SERVICE_NAME>").db("<DB_NAME>").collection("<COLL_NAME>");
+const collection = context
+  .services
+  .get("<SERVICE_NAME>")
+  .db("<DB_NAME>")
+  .collection("<COLL_NAME>");
+
 const doc = collection.findOne({ name: "mongodb" });
 
 Call other named functions if they are defined in your application:
@@ -20,14 +26,15 @@ Learn more about http client here: https://www.mongodb.com/docs/atlas/app-servic
 /**
  * Adds the user object to User collection in the database
  *
- * @param {Object} user - Object representing the user
- * @return {Object} user
+ * @param {Object} authEvent - Object representing the user
+ * @return {Object} document - Document containing
+ * a boolean acknowledged and insertedId
  */
 async function addUserToCollection(authEvent) {
   const usersCollection = context.services
-    .get('mongodb-atlas')
-    .db('dev_voyage_app')
-    .collection('User');
+      .get('mongodb-atlas')
+      .db('dev_voyage_app')
+      .collection('User');
 
   const user = createUser(authEvent.user);
   try {
@@ -43,7 +50,7 @@ async function addUserToCollection(authEvent) {
  */
 function createUser(userObj) {
   return {
-    _id: BSON.ObjectId(userObj.id),
+    _id: BSON.ObjectId(userObj.id), // eslint-disable-line new-cap
     email: userObj.data.email,
   };
 }

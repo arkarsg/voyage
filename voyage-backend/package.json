@@ -9,7 +9,7 @@
   "scripts": {
     "format": "prettier --no-error-on-unmatched-pattern --write \"**/**/*.js\"",
     "lint": "eslint --no-error-on-unmatched-pattern \"**/**/*.js\" --fix",
-    "test": "jest --passWithNoTests --detectOpenHandles",
+    "test": "jest --passWithNoTests",
     "precommit": "yarn format && yarn lint && yarn test"
   },
   "devDependencies": {

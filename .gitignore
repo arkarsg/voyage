@@ -74,3 +74,6 @@ dist/
 
 # Jest
 **/coverage/
+
+# mongodb-realm
+**/mongodb-realm/
