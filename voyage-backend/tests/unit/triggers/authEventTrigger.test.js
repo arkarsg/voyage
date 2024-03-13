@@ -6,7 +6,7 @@ const { MongoClient } = require('mongodb');
 
 const { voyageDb, usersCollection, validUser } = require('../../constants');
 
-let user;
+let atlasUser;
 let mongoClient;
 let app;
 let dbCollection;
@@ -30,7 +30,7 @@ afterAll(async () => {
  */
 afterEach(async () => {
   await dbCollection.deleteMany({});
-  await app.deleteUser(user);
+  await app.deleteUser(atlasUser);
 });
 
 test('emailPassword trigger creates a user in User collection', async () => {
@@ -44,7 +44,7 @@ test('emailPassword trigger creates a user in User collection', async () => {
     validUser.password,
   );
 
-  user = await app.logIn(credentials);
+  atlasUser = await app.logIn(credentials);
 
   const insertedUser = await dbCollection.findOne({
     email: validUser.email,
