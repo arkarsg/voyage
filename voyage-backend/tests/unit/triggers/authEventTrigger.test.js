@@ -44,8 +44,8 @@ test('emailPassword creates a user in User collection', async () => {
   });
 
   const credentials = Realm.Credentials.emailPassword(
-    validAtlasUser.email,
-    validAtlasUser.password,
+      validAtlasUser.email,
+      validAtlasUser.password,
   );
 
   atlasUser = await app.logIn(credentials);
