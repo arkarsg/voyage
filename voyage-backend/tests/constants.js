@@ -5,7 +5,7 @@ const voyageDb = 'dev_voyage_app';
 const usersCollection = 'User';
 
 // Valid user stub
-const validUser = {
+const validAtlasUser = {
   username: 'tester',
   email: 'tester@example.com',
   password: 'Passw0rd!',
@@ -14,5 +14,5 @@ const validUser = {
 module.exports = {
   voyageDb,
   usersCollection,
-  validUser,
+  validAtlasUser,
 };

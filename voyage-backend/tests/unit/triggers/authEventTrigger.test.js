@@ -4,7 +4,11 @@ const { app_id } = require('../../../realm_config.json');
 const Realm = require('realm');
 const { MongoClient } = require('mongodb');
 
-const { voyageDb, usersCollection, validUser } = require('../../constants');
+const {
+  voyageDb,
+  usersCollection,
+  validAtlasUser,
+} = require('../../constants');
 
 let atlasUser;
 let mongoClient;
@@ -33,23 +37,23 @@ afterEach(async () => {
   await app.deleteUser(atlasUser);
 });
 
-test('emailPassword trigger creates a user in User collection', async () => {
+test('emailPassword creates a user in User collection', async () => {
   await app.emailPasswordAuth.registerUser({
-    email: validUser.email,
-    password: validUser.password,
+    email: validAtlasUser.email,
+    password: validAtlasUser.password,
   });
 
   const credentials = Realm.Credentials.emailPassword(
-    validUser.email,
-    validUser.password,
+    validAtlasUser.email,
+    validAtlasUser.password,
   );
 
   atlasUser = await app.logIn(credentials);
 
   const insertedUser = await dbCollection.findOne({
-    email: validUser.email,
+    email: validAtlasUser.email,
   });
 
   // Check that the Trigger creates a User in the User collection
-  expect(insertedUser.email).toBe(validUser.email);
+  expect(insertedUser.email).toBe(validAtlasUser.email);
 });

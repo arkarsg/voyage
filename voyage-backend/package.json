@@ -21,7 +21,6 @@
     "prettier": "3.2.5"
   },
   "dependencies": {
-    "@clerk/clerk-sdk-node": "^4.13.11",
     "dotenv": "^16.4.5",
     "realm": "^12.6.2"
   }
