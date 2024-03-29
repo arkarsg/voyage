@@ -1,14 +1,8 @@
 import React, { createContext, useContext } from 'react';
-import { useStorageState } from '../hooks/useStorageState';
+import { useStorageState } from '@app/hooks/useStorageState';
 import FirebaseAuth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
-interface IAuthContext {
-  signIn: () => Promise<void>;
-  signOut: () => Promise<void>;
-  session?: string | null;
-  isLoading: boolean;
-}
+import type { IAuthContext } from '@app/types';
 
 const auth = FirebaseAuth();
 
