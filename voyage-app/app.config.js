@@ -3,6 +3,7 @@ import 'dotenv/config';
 export default {
   expo: {
     name: 'voyage-app',
+    scheme: 'voyage-app',
     slug: 'voyage-app',
     version: '1.0.0',
     assetBundlePatterns: ['**/*'],

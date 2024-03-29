@@ -27,6 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
+          <string>voyage-app</string>
           <string>com.arkar.voyage</string>
         </array>
       </dict>
