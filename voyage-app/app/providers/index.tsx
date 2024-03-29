@@ -1,12 +1,14 @@
 import React from 'react';
-import { FirebaseProvider } from './FirebaseContext';
+import { AppProvider } from '@realm/react';
+import { SessionProvider } from './SessionProvider';
+import { SYNC_CONFIG } from '../../sync.config';
 
-interface IProps {
-  children: React.ReactNode;
-}
-
-const Providers: React.FC<IProps> = ({ children }) => {
-  return <FirebaseProvider>{children}</FirebaseProvider>;
+const VoyageProviders = (props: React.PropsWithChildren): React.JSX.Element => {
+  return (
+    <AppProvider id={SYNC_CONFIG.appId}>
+      <SessionProvider>{props.children}</SessionProvider>
+    </AppProvider>
+  );
 };
 
-export default Providers;
+export default VoyageProviders;
