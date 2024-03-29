@@ -1,17 +1,15 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth as getFirebaseAuth } from 'firebase/auth';
-import type { User } from 'firebase/auth';
-import app from '../../config/firebase';
+import FirebaseAuth, { type FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 interface IProps {
   children: React.ReactNode;
 }
 
-const firebaseAuth = getFirebaseAuth(app);
+const firebaseAuth = FirebaseAuth();
 
 export const FirebaseContext = createContext<{
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  user: FirebaseAuthTypes.User | null;
+  setUser: React.Dispatch<React.SetStateAction<FirebaseAuthTypes.User | null>>;
 }>({
   user: null,
   setUser: () => {},
@@ -19,9 +17,9 @@ export const FirebaseContext = createContext<{
 
 export const FirebaseProvider: React.FC<IProps> = ({ children }) => {
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
-  const onAuthStateChanged = (user: User | null): void => {
+  const onAuthStateChanged = (user: FirebaseAuthTypes.User | null): void => {
     setUser(user);
     if (initializing) {
       setInitializing(false);
