@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { useSession } from '../providers/SessionProvider';
 
-export default function Index(): React.JSX.Element {
+export default function App(): React.JSX.Element {
   const { signOut } = useSession();
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
