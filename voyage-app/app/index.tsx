@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSession } from './providers/SessionProvider';
-import { Redirect, Slot } from 'expo-router';
+import { Redirect } from 'expo-router';
 import LoadingScreen from './components/LoadingScreen';
 
 export default function SignIn(): React.JSX.Element {
@@ -10,9 +10,9 @@ export default function SignIn(): React.JSX.Element {
     return <LoadingScreen />;
   }
 
-  if (session === null) {
-    return <Redirect href="/sign-in" />;
+  if (session === null || session === undefined) {
+    return <Redirect href="/(auth)/sign-in" />;
   }
 
-  return <Slot />;
+  return <Redirect href="/(app)/home" />;
 }
