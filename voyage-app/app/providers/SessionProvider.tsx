@@ -11,7 +11,7 @@ GoogleSignin.configure({
 });
 
 const AuthContext = createContext<IAuthContext>({
-  signIn: async () => {},
+  signIn: async () => '',
   signOut: async () => {},
   session: null,
   isLoading: false,
@@ -28,20 +28,23 @@ export function SessionProvider(props: React.PropsWithChildren): React.JSX.Eleme
   return (
     <AuthContext.Provider
       value={{
-        signIn: async (): Promise<void> => {
-          await GoogleSignin.signIn()
-            .then(async (data) => {
-              const credential = FirebaseAuth.GoogleAuthProvider.credential(data.idToken);
-              setSession(credential.token);
-              return await auth.signInWithCredential(credential);
-            })
-            .then((user) => {
-              return user;
-            })
-            .catch((err) => {
-              const { code, message } = err;
-              console.log(code, message);
-            });
+        signIn: async (): Promise<string> => {
+          try {
+            const token = await GoogleSignin.signIn()
+              .then(async (data) => {
+                const credential = FirebaseAuth.GoogleAuthProvider.credential(data.idToken);
+                setSession(credential.token);
+                return await auth.signInWithCredential(credential);
+              })
+              .then(async (user) => {
+                return await user.user.getIdToken(false);
+              });
+
+            return token;
+          } catch (err) {
+            console.log(err);
+            throw new Error('Failed to sign in'); // Throw an error if signIn fails
+          }
         },
         signOut: async (): Promise<void> => {
           await auth.signOut();
