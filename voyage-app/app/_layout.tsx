@@ -5,7 +5,7 @@ import VoyageProviders from './providers';
 
 Logs.enableExpoCliLogging();
 
-export default function Root(): React.JSX.Element {
+export default function RootLayout(): React.JSX.Element {
   return (
     <VoyageProviders>
       <Slot />

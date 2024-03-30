@@ -3,16 +3,16 @@ import { useSession } from './providers/SessionProvider';
 import { Redirect } from 'expo-router';
 import LoadingScreen from './components/LoadingScreen';
 
-export default function SignIn(): React.JSX.Element {
+export default function Root(): React.JSX.Element {
   const { session, isLoading } = useSession();
 
   if (isLoading) {
     return <LoadingScreen />;
   }
 
-  if (session === null || session === undefined) {
-    return <Redirect href="/(auth)/sign-in" />;
-  }
-
-  return <Redirect href="/(app)/home" />;
+  return session === null || session === undefined ? (
+    <Redirect href="/(auth)/sign-in" />
+  ) : (
+    <Redirect href="/(app)/home" />
+  );
 }
