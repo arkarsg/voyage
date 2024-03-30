@@ -2,7 +2,7 @@ import React from 'react';
 import { router } from 'expo-router';
 import { Text, View } from 'react-native';
 
-import { useSession } from './providers/SessionProvider';
+import { useSession } from '../providers/SessionProvider';
 
 export default function SignIn(): React.JSX.Element {
   const { signIn } = useSession();
