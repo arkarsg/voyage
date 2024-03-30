@@ -10,7 +10,8 @@
     "lint": "esw \"**/*.{tsx,ts,js}\" --color",
     "lint:watch": "yarn lint --watch",
     "test": "jest --passWithNoTests --coverage",
-    "precommit": "yarn format && yarn lint && yarn test"
+    "precommit": "yarn format && yarn lint && yarn test",
+    "reset": "rm -r -f node_modules && rm -r -f ios && yarn && npx expo prebuild --platform ios --clean"
   },
   "dependencies": {
     "@react-native-firebase/app": "^19.1.1",
