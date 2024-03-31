@@ -17,6 +17,7 @@
   "ignorePatterns": ["metro.config.js", "babel.config.js", "index.js", "sync.config.js"],
   "rules": {
     "semi": [2, "always"],
+    "@typescript-eslint/strict-boolean-expressions": 0,
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-misused-promises": [
       "error",
