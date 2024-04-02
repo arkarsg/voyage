@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import { Button } from 'tamagui';
 import { router } from 'expo-router';
-import { Text, View } from 'react-native';
 
 import { useSession } from './providers/SessionProvider';
 import { useAuth, AuthOperationName, useApp } from '@realm/react';
@@ -18,7 +19,8 @@ export default function SignIn(): React.JSX.Element {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text
+      <Button
+        color="green"
         onPress={async () => {
           await signIn().then((token) => {
             if (token !== null || token !== undefined) {
@@ -32,7 +34,7 @@ export default function SignIn(): React.JSX.Element {
         }}
       >
         Sign In with Google
-      </Text>
+      </Button>
     </View>
   );
 }
