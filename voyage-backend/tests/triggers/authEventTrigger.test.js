@@ -1,14 +1,10 @@
 require('dotenv').config();
 // eslint-disable-next-line camelcase
-const { app_id } = require('../../../realm_config.json');
+const { app_id } = require('../../realm_config.json');
 const Realm = require('realm');
 const { MongoClient } = require('mongodb');
 
-const {
-  voyageDb,
-  usersCollection,
-  validAtlasUser,
-} = require('../../constants');
+const { voyageDb, usersCollection, validAtlasUser } = require('../constants');
 
 let atlasUser;
 let mongoClient;
@@ -25,6 +21,9 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+  await dbCollection.deleteMany({
+    email: validAtlasUser.email,
+  });
   await mongoClient.close();
 });
 
@@ -33,7 +32,6 @@ afterAll(async () => {
  * Removes the user from User collection and delete the user from the app
  */
 afterEach(async () => {
-  await dbCollection.deleteMany({});
   await app.deleteUser(atlasUser);
 });
 
@@ -44,8 +42,8 @@ test('emailPassword creates a user in User collection', async () => {
   });
 
   const credentials = Realm.Credentials.emailPassword(
-      validAtlasUser.email,
-      validAtlasUser.password,
+    validAtlasUser.email,
+    validAtlasUser.password,
   );
 
   atlasUser = await app.logIn(credentials);
