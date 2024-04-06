@@ -12,8 +12,8 @@ let app;
 let dbCollection;
 
 beforeAll(async () => {
-  jest.setTimeout(10000);
   app = new Realm.App(app_id); // eslint-disable-line camelcase
+  // eslint-disable-next-line max-len
   const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.CLUSTER_URI}/test?retryWrites=true&w=majority`;
   mongoClient = new MongoClient(uri);
   await mongoClient.connect();
@@ -42,8 +42,8 @@ test('emailPassword creates a user in User collection', async () => {
   });
 
   const credentials = Realm.Credentials.emailPassword(
-    validAtlasUser.email,
-    validAtlasUser.password,
+      validAtlasUser.email,
+      validAtlasUser.password,
   );
 
   atlasUser = await app.logIn(credentials);

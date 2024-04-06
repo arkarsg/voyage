@@ -9,6 +9,7 @@
     "ecmaVersion": "latest"
   },
   "rules": {
-    "object-curly-spacing": 0
+    "object-curly-spacing": 0,
+    "max-len": ["error", { "code": 120 }]
   }
 }
