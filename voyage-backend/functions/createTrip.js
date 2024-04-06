@@ -6,9 +6,9 @@ const MAX_TRIP_NAME_CHARS = 30;
  */
 async function createTrip(trip) {
   const tripsCollection = context.services
-      .get('mongodb-atlas')
-      .db('dev_voyage_app')
-      .collection('Trip');
+    .get('mongodb-atlas')
+    .db('dev_voyage_app')
+    .collection('Trip');
   const creatorId = context.user.id;
 
   const validationErrors = validateTrip(trip);
@@ -98,7 +98,7 @@ function validateDates(startDate, endDate) {
   }
 
   if (startDate > endDate) {
-    dateErrrors = {
+    dateErrors = {
       ...dateErrors,
       invalidDates: 'Start date must be before end date',
     };

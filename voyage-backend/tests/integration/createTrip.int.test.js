@@ -8,6 +8,7 @@ const {
   voyageDb,
   validAtlasUser,
   integrationValidTrip,
+  integrationInvalidTrip,
   tripsCollection,
   usersCollection,
 } = require('../constants');
@@ -51,7 +52,24 @@ beforeEach(async () => {
   await tripCollection.deleteMany({});
 });
 
-test('Create a valid trip', async () => {
+test('cannot create an invalid trip', async () => {
+  expect(
+    await atlasUser.functions.createTrip(integrationInvalidTrip),
+  ).toStrictEqual({
+    error: {
+      invalidTripName: 'Trip name cannot contain special characters',
+      nameTooLong: 'Trip name cannot be longer than 30 characters',
+      invalidTripDestination: 'Trip destination contains illegal characters',
+    },
+  });
+
+  const allTrips = await tripCollection.find({}).toArray((arr, err) => {
+    return arr;
+  });
+  expect(allTrips).toStrictEqual([]);
+});
+
+test('can create a valid trip', async () => {
   expect(
     await atlasUser.functions.createTrip(integrationValidTrip),
   ).toStrictEqual({

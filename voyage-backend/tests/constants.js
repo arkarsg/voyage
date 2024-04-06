@@ -19,6 +19,14 @@ const integrationValidTrip = {
   endDate: new Date('01-01-2024'),
 };
 
+const integrationInvalidTrip = {
+  tripName:
+    '0; var date=new Date(); do{curDate = new Date();}while(curDate-date<10000)',
+  tripDestination: 'NoSQL injection checks $ne',
+  startDate: new Date('12-12-2024'),
+  endDate: new Date('01-01-2024'),
+};
+
 const validTrip = {
   _id: 'dummy_Paris_id', // eslint-disable-line new-cap
   tripName: 'Paris Tour',
@@ -42,6 +50,7 @@ module.exports = {
   tripsCollection,
   validAtlasUser,
   integrationValidTrip,
+  integrationInvalidTrip,
   validTrip,
   invalidTrip,
 };
