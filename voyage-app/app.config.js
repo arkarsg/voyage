@@ -7,7 +7,7 @@ export default {
     slug: 'voyage-app',
     version: '1.0.0',
     assetBundlePatterns: ['**/*'],
-    userInterfaceStyle: 'automatic',
+    userInterfaceStyle: 'dark',
     ios: {
       bundleIdentifier: 'com.arkar.voyage',
       googleServicesFile: './GoogleService-Info.plist',

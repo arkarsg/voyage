@@ -1,22 +1,24 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { YStack } from 'tamagui';
+
 import { useSession } from '../../providers/SessionProvider';
 import { useUser } from '@realm/react';
+import UserCard from '../../components/ui/UserCard';
 
 export default function Tab(): React.JSX.Element {
-  const { session, signOut } = useSession();
-  const user = useUser();
+  const { getUser, signOut } = useSession();
+  const voyageUser = getUser();
+  const realmUser = useUser();
 
   const logOutRealmAndGoogle = async (): Promise<void> => {
     await signOut().then(async () => {
-      await user.logOut();
+      await realmUser.logOut();
     });
   };
+
   return (
-    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-      <Text>{user.profile.email}</Text>
-      <Text>{session}</Text>
-      <Text onPress={logOutRealmAndGoogle}>test</Text>
-    </View>
+    <YStack padding="$4" fullscreen>
+      <UserCard user={voyageUser} signOut={logOutRealmAndGoogle} />
+    </YStack>
   );
 }

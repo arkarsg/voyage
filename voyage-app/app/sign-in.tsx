@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
-import { Button } from 'tamagui';
+import { Button, YStack, H1 } from 'tamagui';
 import { router } from 'expo-router';
 
 import { useSession } from './providers/SessionProvider';
@@ -11,6 +10,18 @@ export default function SignIn(): React.JSX.Element {
   const { result, logInWithJWT } = useAuth(); // eslint-disable-line @typescript-eslint/unbound-method
   const app = useApp();
 
+  const handleSignIn = async (): Promise<void> => {
+    await signIn().then((token) => {
+      if (token !== null || token !== undefined) {
+        try {
+          logInWithJWT(token);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+  };
+
   useEffect(() => {
     if (app.currentUser && result.success && result.operation === AuthOperationName.LogInWithJWT) {
       router.replace('/');
@@ -18,23 +29,17 @@ export default function SignIn(): React.JSX.Element {
   }, [result, router, app]);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Button
-        color="green"
-        onPress={async () => {
-          await signIn().then((token) => {
-            if (token !== null || token !== undefined) {
-              try {
-                logInWithJWT(token);
-              } catch (err) {
-                console.log(err);
-              }
-            }
-          });
-        }}
-      >
+    <YStack
+      fullscreen
+      alignItems="center"
+      justifyContent="space-evenly"
+      paddingTop="auto"
+      paddingBottom="auto"
+    >
+      <H1 alignSelf="center">Voyage</H1>
+      <Button themeInverse onPress={handleSignIn} borderRadius="$6">
         Sign In with Google
       </Button>
-    </View>
+    </YStack>
   );
 }

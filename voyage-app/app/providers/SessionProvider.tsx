@@ -13,6 +13,7 @@ GoogleSignin.configure({
 const AuthContext = createContext<IAuthContext>({
   signIn: async () => '',
   signOut: async () => {},
+  getUser: () => null,
   session: null,
   isLoading: false,
 });
@@ -37,7 +38,7 @@ export function SessionProvider(props: React.PropsWithChildren): React.JSX.Eleme
                 return await auth.signInWithCredential(credential);
               })
               .then(async (user) => {
-                return await user.user.getIdToken(false);
+                return await user.user.getIdToken(true);
               });
 
             return token;
@@ -49,6 +50,9 @@ export function SessionProvider(props: React.PropsWithChildren): React.JSX.Eleme
         signOut: async (): Promise<void> => {
           await auth.signOut();
           setSession(null);
+        },
+        getUser: () => {
+          return auth.currentUser;
         },
         session,
         isLoading,
