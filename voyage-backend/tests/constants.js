@@ -12,6 +12,13 @@ const validAtlasUser = {
   password: 'Passw0rd!',
 };
 
+const integrationValidTrip = {
+  tripName: 'Paris Tour',
+  tripDestination: 'Paris, France',
+  startDate: new Date('01-01-2024'),
+  endDate: new Date('01-01-2024'),
+};
+
 const validTrip = {
   _id: 'dummy_Paris_id', // eslint-disable-line new-cap
   tripName: 'Paris Tour',
@@ -34,6 +41,7 @@ module.exports = {
   usersCollection,
   tripsCollection,
   validAtlasUser,
+  integrationValidTrip,
   validTrip,
   invalidTrip,
 };
