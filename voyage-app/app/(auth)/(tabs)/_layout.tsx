@@ -5,9 +5,9 @@ export default function TabLayout(): React.JSX.Element {
   return (
     <Tabs screenOptions={{ tabBarActiveTintColor: 'blue' }}>
       <Tabs.Screen
-        name="index"
+        name="profile"
         options={{
-          title: 'Home',
+          title: 'Profile',
         }}
       />
     </Tabs>

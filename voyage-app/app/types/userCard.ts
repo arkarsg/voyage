@@ -1,6 +1,6 @@
-import { type FirebaseAuthTypes } from '@react-native-firebase/auth';
+import type { IUser } from './user';
 
 export interface IUserCard {
-  user: FirebaseAuthTypes.User;
+  user: IUser;
   signOut: () => Promise<void>;
 }

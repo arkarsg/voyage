@@ -5,7 +5,7 @@ import { useSession } from '../../providers/SessionProvider';
 import { useUser } from '@realm/react';
 import UserCard from '../../components/ui/UserCard';
 
-export default function Tab(): React.JSX.Element {
+export default function ProfileTab(): React.JSX.Element {
   const { getUser, signOut } = useSession();
   const voyageUser = getUser();
   const realmUser = useUser();
@@ -18,7 +18,14 @@ export default function Tab(): React.JSX.Element {
 
   return (
     <YStack padding="$4" fullscreen>
-      <UserCard user={voyageUser} signOut={logOutRealmAndGoogle} />
+      <UserCard
+        user={{
+          displayName: voyageUser?.displayName,
+          email: voyageUser?.email,
+          photoURL: voyageUser?.photoURL,
+        }}
+        signOut={logOutRealmAndGoogle}
+      />
     </YStack>
   );
 }
