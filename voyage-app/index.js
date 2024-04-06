@@ -1,10 +1,8 @@
-// eslint-disable
-import 'expo-dev-client';
 import 'react-native-get-random-values';
 import React from 'react';
 import { registerRootComponent } from 'expo';
-import { RootLayout } from 'app/_layout';
+import { FirebaseApp } from './app/FirebaseApp';
 
-const App = () => <RootLayout />;
+const App = () => <FirebaseApp />;
 
 registerRootComponent(App);
