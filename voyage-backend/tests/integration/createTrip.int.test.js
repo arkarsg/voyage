@@ -57,6 +57,7 @@ test('cannot create an invalid trip', async () => {
     await atlasUser.functions.createTrip(integrationInvalidTrip),
   ).toStrictEqual({
     error: {
+      invalidDates: 'Start date must be before end date',
       invalidTripName: 'Trip name cannot contain special characters',
       nameTooLong: 'Trip name cannot be longer than 30 characters',
       invalidTripDestination: 'Trip destination contains illegal characters',
