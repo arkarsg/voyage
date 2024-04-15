@@ -19,7 +19,7 @@ const UserCard = ({ user, signOut }: IUserCard): React.JSX.Element => {
       </Card.Header>
       <Card.Footer padded>
         <XStack flex={1} />
-        <Button themeInverse borderRadius="$6" onPress={signOut} theme="red">
+        <Button borderRadius="$6" onPress={signOut} theme="red">
           Log out
         </Button>
       </Card.Footer>

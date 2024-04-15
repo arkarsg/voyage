@@ -3168,19 +3168,6 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@tamagui-extras/core@1.12.2", "@tamagui-extras/core@^1.12.2":
-  version "1.12.2"
-  resolved "https://registry.yarnpkg.com/@tamagui-extras/core/-/core-1.12.2.tgz#4c73540a45acd658ff505d23b1e24a54877b40ce"
-  integrity sha512-1zhl5dThnlWiEKOpYBepi639TMFo7SkUX+MVi0W7zZOd8osny458ppHOeWG6HbsS8hxuZtnyIdfN9Sq+rz5DXQ==
-
-"@tamagui-extras/form@^1.17.2":
-  version "1.17.2"
-  resolved "https://registry.yarnpkg.com/@tamagui-extras/form/-/form-1.17.2.tgz#5357522bc86bb70dba017ae9df8f4e2e64a19755"
-  integrity sha512-ocyNEZDL/pJFQWzu7JHrOrNi/W15+t2iUGT9KrsIg+5+dpauNqQf0eXQ/fbiwKj5vqo4mT9TgxQYUoDibrZhjQ==
-  dependencies:
-    "@tamagui-extras/core" "1.12.2"
-    react-hook-form "^7.43.9"
-
 "@tamagui/accordion@1.94.1":
   version "1.94.1"
   resolved "https://registry.yarnpkg.com/@tamagui/accordion/-/accordion-1.94.1.tgz#4daf13d7f4b56b9a51d7eb0f8a8b89719bd81e83"
@@ -10463,7 +10450,7 @@ react-helmet-async@^1.3.0:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
-react-hook-form@^7.43.9, react-hook-form@^7.51.2:
+react-hook-form@^7.51.2:
   version "7.51.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.51.2.tgz#79f7f72ee217c5114ff831012d1a7ec344096e7f"
   integrity sha512-y++lwaWjtzDt/XNnyGDQy6goHskFualmDlf+jzEZvjvz6KWDf7EboL7pUvRCzPTJd0EOPpdekYaQLEvvG6m6HA==

@@ -1,5 +1,5 @@
 import React from 'react';
-import { YStack } from 'tamagui';
+import { Input, YStack } from 'tamagui';
 
 import { useSession } from '../../providers/SessionProvider';
 import { useUser } from '@realm/react';
@@ -26,6 +26,7 @@ export default function ProfileTab(): React.JSX.Element {
         }}
         signOut={logOutRealmAndGoogle}
       />
+      <Input minWidth={'100%'} />
     </YStack>
   );
 }

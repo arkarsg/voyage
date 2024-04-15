@@ -7,10 +7,11 @@ export default {
     slug: 'voyage-app',
     version: '1.0.0',
     assetBundlePatterns: ['**/*'],
-    userInterfaceStyle: 'dark',
+    userInterfaceStyle: 'light',
     ios: {
       bundleIdentifier: 'com.arkar.voyage',
       googleServicesFile: './GoogleService-Info.plist',
+      supportsTablet: 'true',
     },
     plugins: [
       '@react-native-firebase/app',
