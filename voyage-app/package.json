@@ -14,6 +14,7 @@
     "reset": "rm -r -f node_modules && rm -r -f ios && yarn && npx --yes expo prebuild --platform ios --clean"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@react-native-firebase/app": "^19.1.1",
     "@react-native-firebase/auth": "^19.1.1",
     "@react-native-google-signin/google-signin": "^10.1.2",
@@ -46,7 +47,8 @@
     "react-native-web": "~0.19.6",
     "react-test-renderer": "^18.2.0",
     "realm": "12.0.0",
-    "tamagui": "^1.94.1"
+    "tamagui": "^1.94.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
