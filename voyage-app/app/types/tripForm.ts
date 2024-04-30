@@ -9,7 +9,6 @@ export interface FormData {
 
 export interface FormFieldProps {
   control: Control<FormData>;
-  type: string;
   placeholder: string;
   name: ValidFieldNames;
   error: FieldError | undefined;
