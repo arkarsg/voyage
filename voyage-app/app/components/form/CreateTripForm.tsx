@@ -1,17 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { YStack, Button, Form, H4 } from 'tamagui';
 import FormField from './FormField';
 
-import type { FormData } from '../../types';
+import { TripSchema, type FormData } from '../../types';
 
 export default function CreateTripForm(): React.JSX.Element {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    resolver: zodResolver(TripSchema),
+  });
 
   const onSubmit = async (data: FormData): Promise<void> => {
     console.log(JSON.stringify(data));
