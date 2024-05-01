@@ -5,7 +5,7 @@ import { useUser } from '@realm/react';
 
 import { YStack } from 'tamagui';
 import UserCard from '../../components/ui/UserCard';
-import { Calendar } from 'react-native-calendars';
+import TripCalendar from '../../components/form/TripCalendar';
 
 export default function ProfileTab(): React.JSX.Element {
   const { getUser, signOut } = useSession();
@@ -28,11 +28,7 @@ export default function ProfileTab(): React.JSX.Element {
         }}
         signOut={logOutRealmAndGoogle}
       />
-      <Calendar
-        onDayPress={(day) => {
-          console.log('selected day', day);
-        }}
-      />
+      <TripCalendar />
     </YStack>
   );
 }
