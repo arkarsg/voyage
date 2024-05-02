@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, type DateData } from 'react-native-calendars';
 import { eachDayOfInterval, format, isBefore, isWithinInterval } from 'date-fns';
 
@@ -19,10 +19,20 @@ interface MarkedDate {
 
 type MarkedDatesType = Record<string, MarkedDate>;
 
-export default function TripCalendar(): React.JSX.Element {
+interface TripCalendarProps {
+  initialStartDate: Date | null;
+  initialEndDate: Date | null;
+  onChange: (dateRange: [Date | null, Date | null]) => void;
+}
+
+export default function TripCalendar({
+  initialStartDate,
+  initialEndDate,
+  onChange,
+}: TripCalendarProps): React.JSX.Element {
   const today: string = format(new Date(), 'yyyy-MM-dd');
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(initialStartDate);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(initialEndDate);
   // TODO: use Tamagui colors
   const selectedColor = 'purple';
   const markedDates: MarkedDatesType = {};
@@ -54,7 +64,6 @@ export default function TripCalendar(): React.JSX.Element {
     })
       .filter((date) => isWithinInterval(date, { start: selectedStartDate, end: selectedEndDate }))
       .forEach((date) => {
-        console.log(format(date, 'yyyy-MM-dd'));
         markedDates[format(date, 'yyyy-MM-dd')] = { selected: true, color: selectedColor };
       });
   }
@@ -66,6 +75,10 @@ export default function TripCalendar(): React.JSX.Element {
       color: selectedColor,
     };
   }
+
+  useEffect(() => {
+    onChange([selectedStartDate, selectedEndDate]);
+  }, [selectedStartDate, selectedEndDate]);
 
   return (
     <Calendar

@@ -1,20 +1,33 @@
 import React from 'react';
-import { Adapt, Button, Dialog, Sheet, XStack, H3 } from 'tamagui';
+import { Adapt, Button, Dialog, Sheet, XStack, H3, Text } from 'tamagui';
 import TripCalendar from './TripCalendar';
 
-export function DatePicker(): React.JSX.Element {
-  return <DatePickerInstance />;
+interface DatePickerProps {
+  startDate: Date | null;
+  endDate: Date | null;
+  onChange: (dateRange: [Date | null, Date | null]) => void;
 }
 
-function DatePickerInstance(): React.JSX.Element {
+const DatePicker = ({ startDate, endDate, onChange }: DatePickerProps): React.JSX.Element => {
   return (
     <Dialog modal>
       <Dialog.Trigger asChild>
-        <Button>Show Dialog</Button>
+        <Button>
+          <Text>
+            {startDate?.getDate()} -- {endDate?.getDate()}
+          </Text>
+        </Button>
       </Dialog.Trigger>
 
-      <Adapt when="sm" platform="touch">
-        <Sheet animation="quick" zIndex={200000} modal dismissOnSnapToBottom>
+      <Adapt when="sm">
+        <Sheet
+          animation="quick"
+          zIndex={200000}
+          modal
+          dismissOnSnapToBottom
+          snapPointsMode="percent"
+          snapPoints={[65]}
+        >
           <Sheet.Frame padding="$4" gap="$4">
             <Adapt.Contents />
           </Sheet.Frame>
@@ -51,13 +64,11 @@ function DatePickerInstance(): React.JSX.Element {
           <Dialog.Title>
             <H3>🏝️ Trip date</H3>
           </Dialog.Title>
-          <Dialog.Description>
-            Make changes to your profile here. Click save when you are done.
-          </Dialog.Description>
-          <TripCalendar />
-          <XStack alignSelf="flex-end" gap="$4">
+          <Dialog.Description>Pick the start date and end date of your voyage</Dialog.Description>
+          <TripCalendar initialStartDate={startDate} initialEndDate={endDate} onChange={onChange} />
+          <XStack alignSelf="center" gap="$4">
             <Dialog.Close displayWhenAdapted asChild>
-              <Button theme="active" aria-label="Close">
+              <Button flex={1} theme="purple" aria-label="Close">
                 Save changes
               </Button>
             </Dialog.Close>
@@ -66,4 +77,6 @@ function DatePickerInstance(): React.JSX.Element {
       </Dialog.Portal>
     </Dialog>
   );
-}
+};
+
+export default DatePicker;

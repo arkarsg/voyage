@@ -21,7 +21,7 @@ const FormField: React.FC<FormFieldProps> = ({
           <Input
             placeholder={placeholder}
             value={value}
-            onChangeText={onChange}
+            onChange={onChange}
             onBlur={onBlur}
             size="$4"
             width="100%"

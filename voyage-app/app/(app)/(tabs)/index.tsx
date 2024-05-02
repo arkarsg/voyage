@@ -5,7 +5,6 @@ import { useUser } from '@realm/react';
 
 import { YStack } from 'tamagui';
 import UserCard from '../../components/ui/UserCard';
-import { DatePicker } from '../../components/form/Modal';
 
 export default function ProfileTab(): React.JSX.Element {
   const { getUser, signOut } = useSession();
@@ -28,7 +27,6 @@ export default function ProfileTab(): React.JSX.Element {
         }}
         signOut={logOutRealmAndGoogle}
       />
-      <DatePicker />
     </YStack>
   );
 }

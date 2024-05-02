@@ -6,6 +6,7 @@ import { YStack, Button, Form, H4 } from 'tamagui';
 import FormField from './FormField';
 
 import { TripSchema, type FormData } from '../../types';
+import DateField from './DateFormField';
 
 export default function CreateTripForm(): React.JSX.Element {
   const {
@@ -52,6 +53,7 @@ export default function CreateTripForm(): React.JSX.Element {
           error={errors.startDate}
         />
         <FormField control={control} placeholder="End date" name="endDate" error={errors.endDate} />
+        <DateField control={control} name="dateRange" error={errors.dateRange} />
         <Form.Trigger asChild>
           <Button borderRadius="$6" width="100%">
             Submit
