@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Calendar, type DateData } from 'react-native-calendars';
 import { eachDayOfInterval, format, isBefore, isWithinInterval } from 'date-fns';
 
@@ -20,19 +20,21 @@ interface MarkedDate {
 type MarkedDatesType = Record<string, MarkedDate>;
 
 interface TripCalendarProps {
-  initialStartDate: Date | null;
-  initialEndDate: Date | null;
-  onChange: (dateRange: [Date | null, Date | null]) => void;
+  initialStartDate: Date | undefined;
+  initialEndDate: Date | undefined;
+  handleStartDateChange: (newStartDate: Date | undefined) => void;
+  handleEndDateChange: (newEndDate: Date | undefined) => void;
 }
 
 export default function TripCalendar({
   initialStartDate,
   initialEndDate,
-  onChange,
+  handleStartDateChange,
+  handleEndDateChange,
 }: TripCalendarProps): React.JSX.Element {
   const today: string = format(new Date(), 'yyyy-MM-dd');
-  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(initialStartDate);
-  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(initialEndDate);
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | undefined>(initialStartDate);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | undefined>(initialEndDate);
   // TODO: use Tamagui colors
   const selectedColor = 'purple';
   const markedDates: MarkedDatesType = {};
@@ -41,11 +43,14 @@ export default function TripCalendar({
     const selectedDay = new Date(day.dateString);
     if (!selectedStartDate || (selectedStartDate && selectedEndDate)) {
       setSelectedStartDate(selectedDay);
-      setSelectedEndDate(null);
+      handleStartDateChange(selectedDay);
+      setSelectedEndDate(undefined);
     } else if (selectedStartDate && isBefore(selectedDay, selectedStartDate)) {
       setSelectedStartDate(selectedDay);
+      handleStartDateChange(selectedDay);
     } else {
       setSelectedEndDate(selectedDay);
+      handleEndDateChange(selectedDay);
     }
   };
 
@@ -75,10 +80,6 @@ export default function TripCalendar({
       color: selectedColor,
     };
   }
-
-  useEffect(() => {
-    onChange([selectedStartDate, selectedEndDate]);
-  }, [selectedStartDate, selectedEndDate]);
 
   return (
     <Calendar

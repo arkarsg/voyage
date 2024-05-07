@@ -1,11 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+// import { zodResolver } from '@hookform/resolvers/zod';
 
 import { YStack, Button, Form, H4 } from 'tamagui';
 import FormField from './FormField';
 
-import { TripSchema, type FormData } from '../../types';
+// import { TripSchema, type FormData } from '../../types';
+import DateField from './DateFormField';
 
 export default function CreateTripForm(): React.JSX.Element {
   const {
@@ -18,8 +19,8 @@ export default function CreateTripForm(): React.JSX.Element {
       tripDestination: undefined,
       startDate: undefined,
       endDate: undefined,
+      dateRange: [undefined, undefined],
     },
-    resolver: zodResolver(TripSchema),
   });
 
   const onSubmit = async (data: FormData): Promise<void> => {
@@ -67,6 +68,7 @@ export default function CreateTripForm(): React.JSX.Element {
           isRequired={false}
           error={errors.endDate}
         />
+        <DateField control={control} name="dateRange" isRequired={true} error={errors.dateRange} />
         <Form.Trigger asChild>
           <Button borderRadius="$6" width="100%">
             Submit

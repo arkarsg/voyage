@@ -3,12 +3,18 @@ import { Adapt, Button, Dialog, Sheet, XStack, H3, Text } from 'tamagui';
 import TripCalendar from './TripCalendar';
 
 interface DatePickerProps {
-  startDate: Date | null;
-  endDate: Date | null;
-  onChange: (dateRange: [Date | null, Date | null]) => void;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+  onStartDateChange: (newStartDate: Date | undefined) => void;
+  onEndDateChange: (newEndDate: Date | undefined) => void;
 }
 
-const DatePicker = ({ startDate, endDate, onChange }: DatePickerProps): React.JSX.Element => {
+const DatePicker = ({
+  startDate,
+  endDate,
+  onStartDateChange,
+  onEndDateChange,
+}: DatePickerProps): React.JSX.Element => {
   return (
     <Dialog modal>
       <Dialog.Trigger asChild>
@@ -65,7 +71,12 @@ const DatePicker = ({ startDate, endDate, onChange }: DatePickerProps): React.JS
             <H3>🏝️ Trip date</H3>
           </Dialog.Title>
           <Dialog.Description>Pick the start date and end date of your voyage</Dialog.Description>
-          <TripCalendar initialStartDate={startDate} initialEndDate={endDate} onChange={onChange} />
+          <TripCalendar
+            initialStartDate={startDate}
+            initialEndDate={endDate}
+            handleStartDateChange={onStartDateChange}
+            handleEndDateChange={onEndDateChange}
+          />
           <XStack alignSelf="center" gap="$4">
             <Dialog.Close displayWhenAdapted asChild>
               <Button flex={1} theme="purple" aria-label="Close">

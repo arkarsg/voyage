@@ -5,6 +5,7 @@ export interface FormData {
   tripDestination: string;
   startDate: string;
   endDate: string;
+  dateRange: [Date | undefined, Date | undefined];
 }
 
 export interface FormFieldProps {
@@ -15,4 +16,9 @@ export interface FormFieldProps {
   error: Merge<FieldError, [(FieldError | undefined)?, (FieldError | undefined)?]> | undefined;
 }
 
-export type ValidFieldNames = 'tripName' | 'tripDestination' | 'startDate' | 'endDate';
+export type ValidFieldNames =
+  | 'tripName'
+  | 'tripDestination'
+  | 'startDate'
+  | 'endDate'
+  | 'dateRange';
