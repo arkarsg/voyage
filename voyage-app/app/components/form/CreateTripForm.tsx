@@ -6,7 +6,6 @@ import { YStack, Button, Form, H4 } from 'tamagui';
 import FormField from './FormField';
 
 import { TripSchema, type FormData } from '../../types';
-import DateField from './DateFormField';
 
 export default function CreateTripForm(): React.JSX.Element {
   const {
@@ -14,6 +13,12 @@ export default function CreateTripForm(): React.JSX.Element {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
+    defaultValues: {
+      tripName: undefined,
+      tripDestination: undefined,
+      startDate: undefined,
+      endDate: undefined,
+    },
     resolver: zodResolver(TripSchema),
   });
 
@@ -38,22 +43,30 @@ export default function CreateTripForm(): React.JSX.Element {
           control={control}
           placeholder="Trip name"
           name="tripName"
+          isRequired={true}
           error={errors.tripName}
         />
         <FormField
           control={control}
           placeholder="Destination"
           name="tripDestination"
+          isRequired={true}
           error={errors.tripDestination}
         />
         <FormField
           control={control}
           placeholder="Start date"
           name="startDate"
+          isRequired={false}
           error={errors.startDate}
         />
-        <FormField control={control} placeholder="End date" name="endDate" error={errors.endDate} />
-        <DateField control={control} name="dateRange" error={errors.dateRange} />
+        <FormField
+          control={control}
+          placeholder="End date"
+          name="endDate"
+          isRequired={false}
+          error={errors.endDate}
+        />
         <Form.Trigger asChild>
           <Button borderRadius="$6" width="100%">
             Submit

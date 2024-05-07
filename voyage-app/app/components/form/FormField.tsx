@@ -10,18 +10,20 @@ const FormField: React.FC<FormFieldProps> = ({
   placeholder,
   name,
   error,
+  isRequired,
   ...otherProps
 }) => {
   return (
     <Controller
       control={control}
       name={name}
+      rules={{ required: isRequired }}
       render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
         <>
           <Input
             placeholder={placeholder}
             value={value}
-            onChange={onChange}
+            onChangeText={onChange}
             onBlur={onBlur}
             size="$4"
             width="100%"
