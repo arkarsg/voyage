@@ -6,12 +6,15 @@ import { Logs } from 'expo';
 import { useFonts } from 'expo-font';
 
 import VoyageProviders from './providers';
-import { UserProvider } from '@realm/react';
+import { UserProvider, RealmProvider } from '@realm/react';
+import { OpenRealmBehaviorType } from 'realm';
 
 import { TamaguiProvider } from 'tamagui';
 import config from '../tamagui.config';
 
 import LoadingScreen from './components/LoadingScreen';
+import { Trip } from './models/Trip';
+import TripDestination from './models/TripDestination';
 
 Logs.enableExpoCliLogging();
 
@@ -43,7 +46,29 @@ export default function RootLayout(): React.JSX.Element {
     <TamaguiProvider config={config} defaultTheme={colorScheme as string}>
       <VoyageProviders>
         <UserProvider fallback={RootLayoutNav}>
-          <RootLayoutNav />
+          <RealmProvider
+            schema={[Trip]}
+            sync={{
+              flexible: true,
+              initialSubscriptions: {
+                update: (mutableSubs, realm) => {
+                  mutableSubs.add(realm.objects(Trip));
+                  mutableSubs.add(realm.objects(TripDestination));
+                },
+              },
+              newRealmFileBehavior: {
+                type: OpenRealmBehaviorType.DownloadBeforeOpen,
+              },
+              existingRealmFileBehavior: {
+                type: OpenRealmBehaviorType.OpenImmediately,
+              },
+              onError: (error) => {
+                console.error(error);
+              },
+            }}
+          >
+            <RootLayoutNav />
+          </RealmProvider>
         </UserProvider>
       </VoyageProviders>
     </TamaguiProvider>

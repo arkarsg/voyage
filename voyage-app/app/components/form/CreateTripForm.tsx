@@ -1,7 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useUser } from '@realm/react';
+import { useUser, useRealm } from '@realm/react';
+import { BSON } from 'realm';
 
 import { Button, Form, H4, YStack } from 'tamagui';
 import FormField from './FormField';
@@ -11,6 +12,7 @@ import DateField from './DateFormField';
 
 export default function CreateTripForm(): React.JSX.Element {
   const user = useUser();
+  const realm = useRealm();
 
   const {
     control,
@@ -28,6 +30,23 @@ export default function CreateTripForm(): React.JSX.Element {
   const onSubmit = async (data: FormData): Promise<void> => {
     console.log(data);
     const { tripName, tripDestination, dateRange } = data;
+    const [startDate, endDate] = dateRange;
+    const creator = new BSON.ObjectID(user.id);
+
+    const dest = {
+      tripDestination,
+    };
+    realm.write(() => {
+      return realm.create('Trip', {
+        tripName,
+        startDate,
+        endDate,
+        dest,
+        creatorId: creator,
+        tripMembers: [creator],
+      });
+    });
+
     await user?.functions.createTrip({
       tripName: tripName,
       tripDestination: tripDestination,
@@ -37,7 +56,7 @@ export default function CreateTripForm(): React.JSX.Element {
   };
 
   return (
-    <YStack fullscreen padding="$4" gap="$4">
+    <YStack padding="$4" gap="$4">
       <Form
         alignItems="flex-start"
         gap="$4"
