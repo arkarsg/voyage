@@ -3,9 +3,7 @@ import type { Control, FieldError, Merge, ValidationRule } from 'react-hook-form
 export interface FormData {
   tripName: string;
   tripDestination: string;
-  startDate: string;
-  endDate: string;
-  dateRange: [Date | undefined, Date | undefined];
+  dateRange: Array<Date | undefined>;
 }
 
 export interface FormFieldProps {
@@ -13,12 +11,7 @@ export interface FormFieldProps {
   placeholder?: string;
   name: ValidFieldNames;
   isRequired: ValidationRule<boolean>;
-  error: Merge<FieldError, [(FieldError | undefined)?, (FieldError | undefined)?]> | undefined;
+  error: Merge<FieldError, Array<FieldError | undefined>> | undefined;
 }
 
-export type ValidFieldNames =
-  | 'tripName'
-  | 'tripDestination'
-  | 'startDate'
-  | 'endDate'
-  | 'dateRange';
+export type ValidFieldNames = 'tripName' | 'tripDestination' | 'dateRange';

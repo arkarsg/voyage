@@ -1,14 +1,17 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-// import { zodResolver } from '@hookform/resolvers/zod';
+import { useUser } from '@realm/react';
 
-import { YStack, Button, Form, H4 } from 'tamagui';
+import { Button, Form, H4, YStack } from 'tamagui';
 import FormField from './FormField';
 
-// import { TripSchema, type FormData } from '../../types';
+import { TripSchema, type FormData } from '../../types';
 import DateField from './DateFormField';
 
 export default function CreateTripForm(): React.JSX.Element {
+  const user = useUser();
+
   const {
     control,
     handleSubmit,
@@ -17,14 +20,20 @@ export default function CreateTripForm(): React.JSX.Element {
     defaultValues: {
       tripName: undefined,
       tripDestination: undefined,
-      startDate: undefined,
-      endDate: undefined,
       dateRange: [undefined, undefined],
     },
+    resolver: zodResolver(TripSchema),
   });
 
   const onSubmit = async (data: FormData): Promise<void> => {
-    console.log(JSON.stringify(data));
+    console.log(data);
+    const { tripName, tripDestination, dateRange } = data;
+    await user?.functions.createTrip({
+      tripName: tripName,
+      tripDestination: tripDestination,
+      startDate: dateRange[0],
+      endDate: dateRange[1],
+    });
   };
 
   return (
@@ -53,20 +62,6 @@ export default function CreateTripForm(): React.JSX.Element {
           name="tripDestination"
           isRequired={true}
           error={errors.tripDestination}
-        />
-        <FormField
-          control={control}
-          placeholder="Start date"
-          name="startDate"
-          isRequired={false}
-          error={errors.startDate}
-        />
-        <FormField
-          control={control}
-          placeholder="End date"
-          name="endDate"
-          isRequired={false}
-          error={errors.endDate}
         />
         <DateField control={control} name="dateRange" isRequired={true} error={errors.dateRange} />
         <Form.Trigger asChild>
