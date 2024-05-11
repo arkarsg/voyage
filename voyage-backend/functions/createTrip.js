@@ -1,3 +1,5 @@
+const BSON = require('bson');
+
 const MAX_TRIP_NAME_CHARS = 30;
 
 /**
@@ -17,8 +19,8 @@ async function createTrip(trip) {
     try {
       const newTrip = {
         ...trip,
-        creatorId: creatorId,
-        tripMembers: [creatorId],
+        creatorId: new BSON.ObjectId(creatorId),
+        tripMembers: [new BSON.ObjectId(creatorId)],
       };
       await tripsCollection.insertOne(newTrip);
       return { success: true };
