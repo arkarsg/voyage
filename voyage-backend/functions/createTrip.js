@@ -1,5 +1,3 @@
-const BSON = require('bson');
-
 const MAX_TRIP_NAME_CHARS = 30;
 
 /**
