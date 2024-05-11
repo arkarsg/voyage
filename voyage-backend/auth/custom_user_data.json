@@ -1,7 +1,7 @@
 {
-  "enabled": true,
-  "mongo_service_name": "mongodb-atlas",
-  "database_name": "voyage_app",
-  "collection_name": "Users",
-  "user_id_field": "_id"
+    "enabled": true,
+    "mongo_service_name": "mongodb-atlas",
+    "database_name": "voyage_app",
+    "collection_name": "Users",
+    "user_id_field": "_id"
 }
