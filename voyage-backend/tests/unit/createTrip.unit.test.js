@@ -49,7 +49,6 @@ test('Create invalid trip returns errors', async () => {
       invalidTripName: 'Trip name cannot contain special characters',
       invalidEndDate: 'Invalid end date',
       nameTooLong: 'Trip name cannot be longer than 30 characters',
-      invalidTripDestination: 'Trip destination contains illegal characters',
     },
   });
 });

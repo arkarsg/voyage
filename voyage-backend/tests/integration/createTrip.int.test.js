@@ -33,8 +33,8 @@ beforeAll(async () => {
   });
 
   const credentials = Realm.Credentials.emailPassword(
-      validAtlasUser.email,
-      validAtlasUser.password,
+    validAtlasUser.email,
+    validAtlasUser.password,
   );
   atlasUser = await app.logIn(credentials);
 });
@@ -54,13 +54,12 @@ beforeEach(async () => {
 
 test('cannot create an invalid trip', async () => {
   expect(
-      await atlasUser.functions.createTrip(integrationInvalidTrip),
+    await atlasUser.functions.createTrip(integrationInvalidTrip),
   ).toStrictEqual({
     error: {
       invalidDates: 'Start date must be before end date',
       invalidTripName: 'Trip name cannot contain special characters',
       nameTooLong: 'Trip name cannot be longer than 30 characters',
-      invalidTripDestination: 'Trip destination contains illegal characters',
     },
   });
 
@@ -72,7 +71,7 @@ test('cannot create an invalid trip', async () => {
 
 test('can create a valid trip', async () => {
   expect(
-      await atlasUser.functions.createTrip(integrationValidTrip),
+    await atlasUser.functions.createTrip(integrationValidTrip),
   ).toStrictEqual({
     success: true,
   });
@@ -83,10 +82,10 @@ test('can create a valid trip', async () => {
 
   expect(insertedTrip).toBeDefined();
   expect(insertedTrip).toEqual(
-      expect.objectContaining({
-        ...integrationValidTrip,
-        creatorId: atlasUser.id,
-        tripMembers: [atlasUser.id],
-      }),
+    expect.objectContaining({
+      ...integrationValidTrip,
+      creatorId: atlasUser.id,
+      tripMembers: [atlasUser.id],
+    }),
   );
 });

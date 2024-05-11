@@ -1,0 +1,56 @@
+{
+    "title": "Trip",
+    "type": "object",
+    "required": [
+        "_id",
+        "creatorId",
+        "endDate",
+        "startDate",
+        "tripName"
+    ],
+    "properties": {
+        "_id": {
+            "bsonType": "objectId"
+        },
+        "creatorId": {
+            "bsonType": "objectId"
+        },
+        "endDate": {
+            "bsonType": "date"
+        },
+        "startDate": {
+            "bsonType": "date"
+        },
+        "tripDestination": {
+            "title": "TripDestination",
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "country": {
+                    "bsonType": "string"
+                },
+                "lat": {
+                    "bsonType": "float"
+                },
+                "long": {
+                    "bsonType": "float"
+                },
+                "name": {
+                    "bsonType": "string"
+                }
+            }
+        },
+        "tripMembers": {
+            "bsonType": "array",
+            "uniqueItems": true,
+            "items": {
+                "bsonType": "objectId"
+            }
+        },
+        "tripName": {
+            "bsonType": "string"
+        }
+    }
+}

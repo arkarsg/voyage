@@ -1,7 +1,9 @@
 {
+    "database": "dev_voyage_app",
+    "collection": "Trip",
     "roles": [
         {
-            "name": "readOwnWriteOwn",
+            "name": "readAndWriteAll",
             "apply_when": {},
             "document_filters": {
                 "read": true,
