@@ -14,7 +14,12 @@ const validAtlasUser = {
 
 const integrationValidTrip = {
   tripName: 'Paris Tour',
-  tripDestination: 'Paris, France',
+  tripDestination: {
+    name: 'Paris',
+    country: 'France',
+    lat: 1.0,
+    long: -56.0,
+  },
   startDate: new Date('01-01-2024'),
   endDate: new Date('01-01-2024'),
 };
