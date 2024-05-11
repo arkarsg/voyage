@@ -86,6 +86,6 @@ test('can create a valid trip', async () => {
       ...integrationValidTrip,
       creatorId: atlasUser.id,
       tripMembers: [atlasUser.id],
-    }),
+    },
   );
 });

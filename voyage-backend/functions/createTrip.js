@@ -6,9 +6,9 @@ const MAX_TRIP_NAME_CHARS = 30;
  */
 async function createTrip(trip) {
   const tripsCollection = context.services
-      .get('mongodb-atlas')
-      .db('dev_voyage_app')
-      .collection('Trip');
+    .get('mongodb-atlas')
+    .db('dev_voyage_app')
+    .collection('Trip');
   const creatorId = context.user.id;
 
   const validationErrors = validateTrip(trip);
@@ -42,15 +42,13 @@ async function createTrip(trip) {
  * @param {Object} trip - Trip
  * @return {Array} array of validation errors, if any
  */
-function validateTrip({ tripName, tripDestination, startDate, endDate }) {
+function validateTrip({ tripName, startDate, endDate }) {
   const nameErrors = validateTripName(tripName);
   const dateErrors = validateDates(startDate, endDate);
-  const tripDestinationErrors = validateTripDestination(tripDestination);
 
   return {
     ...nameErrors,
     ...dateErrors,
-    ...tripDestinationErrors,
   };
 }
 
@@ -107,20 +105,6 @@ function validateDates(startDate, endDate) {
   return dateErrors;
 }
 
-/**
- * @param {String} tripDestination
- * @return {Object}
- */
-function validateTripDestination(tripDestination) {
-  let destinationErrors = {};
-  if (containsIllegalCharacters(tripDestination)) {
-    destinationErrors = {
-      ...destinationErrors,
-      invalidTripDestination: 'Trip destination contains illegal characters',
-    };
-  }
-  return destinationErrors;
-}
 /**
  * Checks if contains any illegal characters for NoSQL injections
  * Illegal characters: $, <, >, ;, {, }

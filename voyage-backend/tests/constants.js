@@ -27,7 +27,9 @@ const integrationValidTrip = {
 const integrationInvalidTrip = {
   tripName:
     '0; var date=new Date(); do{curDate = new Date();}while(curDate-date<10000)',
-  tripDestination: 'NoSQL injection checks $ne',
+  tripDestination: {
+    name: 'Paris',
+  },
   startDate: new Date('12-12-2024'),
   endDate: new Date('01-01-2024'),
 };
