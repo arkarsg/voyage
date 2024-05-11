@@ -8,7 +8,7 @@ import { BSON } from 'realm';
 import { Button, Form, H4, YStack } from 'tamagui';
 import FormField from './FormField';
 
-import { TripSchema, type FormData } from '../../types';
+import { TripSchema, type FormData } from '../../../types';
 import DateField from './DateFormField';
 
 export default function CreateTripForm(): React.JSX.Element {

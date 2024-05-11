@@ -7,7 +7,6 @@ import { useFonts } from 'expo-font';
 
 import VoyageProviders from './providers';
 import { UserProvider, RealmProvider } from '@realm/react';
-import { OpenRealmBehaviorType } from 'realm';
 
 import { TamaguiProvider } from 'tamagui';
 import config from '../tamagui.config';

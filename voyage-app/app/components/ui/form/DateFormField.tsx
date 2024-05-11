@@ -1,6 +1,6 @@
 import React from 'react';
 import { useController, Controller } from 'react-hook-form';
-import type { FormFieldProps } from '../../types';
+import type { FormFieldProps } from '../../../types';
 import { Text } from 'tamagui';
 import DatePicker from './DatePickerModal';
 

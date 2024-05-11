@@ -1,4 +1,4 @@
-import CreateTripForm from '../../components/form/CreateTripForm';
+import CreateTripForm from '../../components/ui/form/CreateTripForm';
 import React from 'react';
 import { useQuery } from '@realm/react';
 import { Trip } from '../../models/Trip';

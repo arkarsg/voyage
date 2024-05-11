@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 
 import { Input, Text } from 'tamagui';
 
-import type { FormFieldProps } from '../../types';
+import type { FormFieldProps } from '../../../types';
 
 const FormField: React.FC<FormFieldProps> = ({
   control,
