@@ -16,6 +16,7 @@ async function createTrip(trip) {
   if (Object.keys(validationErrors).length === 0) {
     try {
       const newTrip = {
+        _id: new BSON.ObjectId(),
         ...trip,
         creatorId: new BSON.ObjectId(creatorId),
         tripMembers: [new BSON.ObjectId(creatorId)],

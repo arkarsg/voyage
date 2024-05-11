@@ -1,9 +1,9 @@
 const { createTrip } = require('../../functions/createTrip');
-
+const { ObjectId } = require('BSON');
 const { validTrip, invalidTrip } = require('../constants');
 
 let insertOne;
-const dummyUserId = 'dummy'; // eslint-disable-line new-cap
+const dummyUserId = '66117d83879a0b14610e2908'; // eslint-disable-line new-cap
 
 beforeEach(() => {
   insertOne = jest.fn(() => {
@@ -29,6 +29,14 @@ beforeEach(() => {
       get,
     },
   };
+
+  objectIdMock = jest.fn(() => {
+    return dummyUserId;
+  });
+
+  global.BSON = {
+    ObjectId: ObjectId,
+  };
 });
 
 test('Create a valid trip', async () => {
@@ -38,8 +46,8 @@ test('Create a valid trip', async () => {
 
   expect(context.services.get.db.collection.insertOne).toHaveBeenCalledWith({
     ...validTrip,
-    creatorId: dummyUserId,
-    tripMembers: [dummyUserId],
+    creatorId: new ObjectId(dummyUserId),
+    tripMembers: [new ObjectId(dummyUserId)],
   });
 });
 

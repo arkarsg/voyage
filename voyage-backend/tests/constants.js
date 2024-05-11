@@ -17,8 +17,8 @@ const integrationValidTrip = {
   tripDestination: {
     name: 'Paris',
     country: 'France',
-    lat: 1.0,
-    long: -56.0,
+    lat: 1.123,
+    long: -56.123,
   },
   startDate: new Date('01-01-2024'),
   endDate: new Date('01-01-2024'),

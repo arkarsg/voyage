@@ -1,6 +1,7 @@
 require('dotenv').config();
 // eslint-disable-next-line camelcase
 const { app_id } = require('../../realm_config.json');
+const { BSON } = require('BSON');
 const Realm = require('realm');
 const { MongoClient } = require('mongodb');
 
@@ -84,8 +85,8 @@ test('can create a valid trip', async () => {
   expect(insertedTrip).toEqual(
     expect.objectContaining({
       ...integrationValidTrip,
-      creatorId: atlasUser.id,
-      tripMembers: [atlasUser.id],
-    },
+      creatorId: new BSON.ObjectId(atlasUser.id),
+      tripMembers: [new BSON.ObjectId(atlasUser.id)],
+    }),
   );
 });
