@@ -47,20 +47,13 @@ export default function RootLayout(): React.JSX.Element {
       <VoyageProviders>
         <UserProvider fallback={RootLayoutNav}>
           <RealmProvider
-            schema={[Trip]}
+            schema={[Trip, TripDestination]}
             sync={{
               flexible: true,
               initialSubscriptions: {
                 update: (mutableSubs, realm) => {
                   mutableSubs.add(realm.objects(Trip));
-                  mutableSubs.add(realm.objects(TripDestination));
                 },
-              },
-              newRealmFileBehavior: {
-                type: OpenRealmBehaviorType.DownloadBeforeOpen,
-              },
-              existingRealmFileBehavior: {
-                type: OpenRealmBehaviorType.OpenImmediately,
               },
               onError: (error) => {
                 console.error(error);

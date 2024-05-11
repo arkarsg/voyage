@@ -6,16 +6,25 @@
 // to defining a schema on the class - see `Task.js` in the Realm example app
 // for an example of this.
 
-import Realm from 'realm';
+import Realm, { type ObjectSchema } from 'realm';
 
 // To use a class as a Realm object type in Typescript with the `@realm/babel-plugin` plugin,
 // simply define the properties on the class with the correct type and the plugin will convert
 // it to a Realm schema automatically.
-export default class TripDestination extends Realm.Object<TripDestination> {
+export default class TripDestination extends Realm.Object {
   name!: string;
   country?: string;
   lat?: Realm.Types.Float;
   long?: Realm.Types.Float;
 
-  static embedded = true;
+  static schema: ObjectSchema = {
+    name: 'TripDestination',
+    embedded: true,
+    properties: {
+      name: 'string',
+      country: 'string?',
+      lat: 'float?',
+      long: 'float?',
+    },
+  };
 }

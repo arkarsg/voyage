@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useUser, useRealm } from '@realm/react';
+import 'react-native-get-random-values';
 import { BSON } from 'realm';
 
 import { Button, Form, H4, YStack } from 'tamagui';
@@ -29,29 +30,30 @@ export default function CreateTripForm(): React.JSX.Element {
 
   const onSubmit = async (data: FormData): Promise<void> => {
     console.log(data);
+    console.log(user.isLoggedIn);
     const { tripName, tripDestination, dateRange } = data;
     const [startDate, endDate] = dateRange;
     const creator = new BSON.ObjectID(user.id);
-
+    const members = [creator];
     const dest = {
-      tripDestination,
+      name: tripDestination,
     };
-    realm.write(() => {
-      return realm.create('Trip', {
-        tripName,
-        startDate,
-        endDate,
-        dest,
-        creatorId: creator,
-        tripMembers: [creator],
-      });
-    });
+    const id = new BSON.ObjectID();
 
-    await user?.functions.createTrip({
+    const newTrip = {
+      _id: id,
       tripName: tripName,
-      tripDestination: tripDestination,
-      startDate: dateRange[0],
-      endDate: dateRange[1],
+      startDate: startDate,
+      endDate: endDate,
+      tripDestination: dest,
+      creatorId: creator,
+      tripMembers: members,
+    };
+
+    console.log(JSON.stringify(newTrip));
+
+    realm.write(() => {
+      return realm.create('Trip', newTrip);
     });
   };
 

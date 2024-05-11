@@ -3114,11 +3114,6 @@
   dependencies:
     nanoid "^3.1.23"
 
-"@realm/babel-plugin@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@realm/babel-plugin/-/babel-plugin-0.1.1.tgz#e4447333d11c52d1d190ac8f4549a895d54e30d7"
-  integrity sha512-abSu6oXDkCes1lfI1XE0aWiS4vG86KukjmD09ufaBa/QCs27/1FNqtEOuWvCf/QGERWIGj4GwDJf7DHELvIdKw==
-
 "@realm/react@^0.6.0":
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@realm/react/-/react-0.6.2.tgz#75205e97d851cb7121df2e2cca4d214fd75f1dc2"
