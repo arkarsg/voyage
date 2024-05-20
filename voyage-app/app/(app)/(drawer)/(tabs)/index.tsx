@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useSession } from '../../providers/SessionProvider';
+import { useSession } from '../../../providers/SessionProvider';
 import { useUser } from '@realm/react';
 
 import { YStack } from 'tamagui';
-import UserCard from '../../components/ui/UserCard';
+import UserCard from '../../../components/ui/UserCard';
 
 export default function ProfileTab(): React.JSX.Element {
   const { getUser, signOut } = useSession();
