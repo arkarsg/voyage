@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
-import { Slot, SplashScreen } from 'expo-router';
 import { Logs } from 'expo';
 import { useFonts } from 'expo-font';
+import { Slot, SplashScreen } from 'expo-router';
 
+import { RealmProvider, UserProvider } from '@realm/react';
 import VoyageProviders from './providers';
-import { UserProvider, RealmProvider } from '@realm/react';
 
 import { TamaguiProvider } from 'tamagui';
 import config from '../tamagui.config';
@@ -14,6 +14,7 @@ import config from '../tamagui.config';
 import LoadingScreen from './components/LoadingScreen';
 import { Trip } from './models/Trip';
 import TripDestination from './models/TripDestination';
+import { TripProvider } from './providers/TripProvider';
 
 Logs.enableExpoCliLogging();
 
@@ -59,7 +60,9 @@ export default function RootLayout(): React.JSX.Element {
               },
             }}
           >
-            <RootLayoutNav />
+            <TripProvider>
+              <RootLayoutNav />
+            </TripProvider>
           </RealmProvider>
         </UserProvider>
       </VoyageProviders>
