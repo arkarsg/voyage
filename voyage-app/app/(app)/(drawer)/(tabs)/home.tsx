@@ -1,15 +1,13 @@
-import { useTripContext } from '../../../providers/TripProvider';
-import CreateTripForm from '../../../components/ui/form/CreateTripForm';
+import { useTripContext } from '@providers/TripProvider';
 import React from 'react';
 import { YStack, Text } from 'tamagui';
 
 export default function HomeTab(): React.JSX.Element {
-  const { currentTrip } = useTripContext();
+  const { currentTrip, trips } = useTripContext();
 
   return (
-    <YStack>
-      <CreateTripForm />
-      {currentTrip ? <Text>currentTrip.name</Text> : <Text>No trips</Text>}
+    <YStack fullscreen flex={1} alignItems="center" justifyContent="center">
+      {currentTrip ? <Text>currentTrip.name</Text> : <Text>You have not selected any trips</Text>}
     </YStack>
   );
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useSession } from '../../../providers/SessionProvider';
+import { useSession } from '@providers/SessionProvider';
 import { useUser } from '@realm/react';
 
-import { YStack } from 'tamagui';
-import UserCard from '../../../components/ui/UserCard';
+import { YStack, Button } from 'tamagui';
+import UserCard from '@components/ui/UserCard';
 
 export default function ProfileTab(): React.JSX.Element {
   const { getUser, signOut } = useSession();
@@ -18,15 +18,25 @@ export default function ProfileTab(): React.JSX.Element {
   };
 
   return (
-    <YStack padding="$4" fullscreen>
+    <YStack padding="$4" fullscreen flex={1}>
       <UserCard
         user={{
           displayName: voyageUser?.displayName,
           email: voyageUser?.email,
           photoURL: voyageUser?.photoURL,
         }}
-        signOut={logOutRealmAndGoogle}
       />
+      <Button
+        borderRadius="$6"
+        onPress={logOutRealmAndGoogle}
+        theme="red"
+        position="absolute"
+        bottom={10}
+        alignSelf="center"
+        width={'100%'}
+      >
+        Log out
+      </Button>
     </YStack>
   );
 }

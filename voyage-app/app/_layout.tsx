@@ -6,15 +6,15 @@ import { useFonts } from 'expo-font';
 import { Slot, SplashScreen } from 'expo-router';
 
 import { RealmProvider, UserProvider } from '@realm/react';
-import VoyageProviders from './providers';
+import VoyageProviders from '@providers/index';
 
 import { TamaguiProvider } from 'tamagui';
 import config from '../tamagui.config';
 
-import LoadingScreen from './components/LoadingScreen';
-import { Trip } from './models/Trip';
-import TripDestination from './models/TripDestination';
-import { TripProvider } from './providers/TripProvider';
+import LoadingScreen from '@components/LoadingScreen';
+import { Trip } from '@models/Trip';
+import TripDestination from '@models/TripDestination';
+import { TripProvider } from '@providers/TripProvider';
 
 Logs.enableExpoCliLogging();
 

@@ -1,7 +1,7 @@
 import { Redirect, Stack } from 'expo-router';
 import React from 'react';
-import { useSession } from '../providers/SessionProvider';
-import LoadingScreen from '../components/LoadingScreen';
+import { useSession } from '@providers/SessionProvider';
+import LoadingScreen from '@components/LoadingScreen';
 import { useApp } from '@realm/react';
 
 export default function AppLayout(): React.JSX.Element {
