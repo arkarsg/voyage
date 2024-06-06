@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
+import VoyageHeaderButton from '@components/ui/VoyageHeaderButton';
 
 export default function TabLayout(): React.JSX.Element {
   return (
@@ -8,6 +9,7 @@ export default function TabLayout(): React.JSX.Element {
         name="home"
         options={{
           title: 'Home',
+          headerRight: () => <VoyageHeaderButton />,
         }}
       />
       <Tabs.Screen

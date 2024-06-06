@@ -1,8 +1,8 @@
+import LoadingScreen from '@components/LoadingScreen';
+import { useSession } from '@providers/SessionProvider';
+import { useApp } from '@realm/react';
 import { Redirect, Stack } from 'expo-router';
 import React from 'react';
-import { useSession } from '@providers/SessionProvider';
-import LoadingScreen from '@components/LoadingScreen';
-import { useApp } from '@realm/react';
 
 export default function AppLayout(): React.JSX.Element {
   const { session, isLoading } = useSession();
@@ -18,7 +18,7 @@ export default function AppLayout(): React.JSX.Element {
 
   return (
     <Stack>
-      <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
 }

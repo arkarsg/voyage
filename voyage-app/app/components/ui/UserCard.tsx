@@ -4,7 +4,7 @@ import type { IUserCard } from '../../types';
 
 const UserCard = ({ user }: IUserCard): React.JSX.Element => {
   return (
-    <Card bordered borderRadius="$6">
+    <Card bordered borderRadius="$6" margin="$1">
       <Card.Header padded>
         <XStack alignItems="center" gap="$3">
           <Avatar circular size="$4">
