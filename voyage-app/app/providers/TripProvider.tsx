@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState, useContext } from 'react';
 import type Realm from 'realm';
 import { useRealm, useQuery } from '@realm/react';
 import { type Subscription } from 'realm/dist/bundle';
-import { Trip } from '../models/Trip';
+import { Trip } from '@models/Trip';
 
 interface ITripContext {
   currentTrip: Trip | null | undefined;

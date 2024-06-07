@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import VoyageHeaderButton from '@components/ui/VoyageHeaderButton';
+import TripPopover from '@components/ui/TripPopover';
 
 export default function TabLayout(): React.JSX.Element {
   return (
@@ -9,13 +9,13 @@ export default function TabLayout(): React.JSX.Element {
         name="home"
         options={{
           title: 'Home',
-          headerRight: () => <VoyageHeaderButton />,
+          headerRight: () => <TripPopover />,
         }}
       />
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Profile',
+          title: 'Your Trips',
         }}
       />
     </Tabs>

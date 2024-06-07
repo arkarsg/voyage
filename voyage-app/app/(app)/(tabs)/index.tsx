@@ -1,42 +1,17 @@
+import TripList from '@components/ui/TripList';
+import { useTripContext } from '@providers/TripProvider';
 import React from 'react';
+import { ScrollView, Text, YStack } from 'tamagui';
 
-import { useSession } from '@providers/SessionProvider';
-import { useUser } from '@realm/react';
-
-import { YStack, Button } from 'tamagui';
-import UserCard from '@components/ui/UserCard';
-
-export default function ProfileTab(): React.JSX.Element {
-  const { getUser, signOut } = useSession();
-  const voyageUser = getUser();
-  const realmUser = useUser();
-
-  const logOutRealmAndGoogle = async (): Promise<void> => {
-    await signOut().then(async () => {
-      await realmUser.logOut();
-    });
-  };
+export default function TripsTab(): React.JSX.Element {
+  const { setCurrentTripById, currentTrip, trips } = useTripContext();
 
   return (
-    <YStack padding="$4" fullscreen flex={1}>
-      <UserCard
-        user={{
-          displayName: voyageUser?.displayName,
-          email: voyageUser?.email,
-          photoURL: voyageUser?.photoURL,
-        }}
-      />
-      <Button
-        borderRadius="$6"
-        onPress={logOutRealmAndGoogle}
-        theme="red"
-        position="absolute"
-        bottom={10}
-        alignSelf="center"
-        width={'100%'}
-      >
-        Log out
-      </Button>
+    <YStack fullscreen>
+      <Text>🏝️ Hey there</Text>
+      <ScrollView>
+        <TripList setCurrentTrip={setCurrentTripById} currentTrip={currentTrip} trips={trips} />
+      </ScrollView>
     </YStack>
   );
 }
