@@ -1,0 +1,21 @@
+{
+    "database": "dev_voyage_app",
+    "collection": "User",
+    "roles": [
+        {
+            "name": "readAllWriteOwn",
+            "apply_when": {},
+            "document_filters": {
+                "read": true,
+                "write": {
+                    "owner_id": "%%user.id"
+                }
+            },
+            "insert": true,
+            "delete": true,
+            "search": true,
+            "read": true,
+            "write": true
+        }
+    ]
+}

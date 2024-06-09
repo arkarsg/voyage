@@ -7,12 +7,20 @@
       "apply_when": {},
       "document_filters": {
         "read": {
-          "creatorId": "%%user.id",
-          "tripMembers": "%%user.id"
+          "creatorId": {
+            "%stringToOid": "%%user.id"
+          },
+          "tripMembers": {
+            "%stringToOid": "%%user.id"
+          }
         },
         "write": {
-          "creatorId": "%%user.id",
-          "tripMembers": "%%user.id"
+          "creatorId": {
+            "%stringToOid": "%%user.id"
+          },
+          "tripMembers": {
+            "%stringToOid": "%%user.id"
+          }
         }
       },
       "insert": true,

@@ -34,8 +34,8 @@ beforeAll(async () => {
   });
 
   const credentials = Realm.Credentials.emailPassword(
-      validAtlasUser.email,
-      validAtlasUser.password,
+    validAtlasUser.email,
+    validAtlasUser.password,
   );
   atlasUser = await app.logIn(credentials);
 });
@@ -44,18 +44,16 @@ afterAll(async () => {
   await userCollection.deleteMany({
     email: validAtlasUser.email,
   });
-  await tripCollection.deleteMany({});
+  await tripCollection.deleteMany({
+    tripName: integrationValidTrip.tripName,
+  });
   await app.deleteUser(atlasUser);
   await mongoClient.close();
 });
 
-beforeEach(async () => {
-  await tripCollection.deleteMany({});
-});
-
 test('cannot create an invalid trip', async () => {
   expect(
-      await atlasUser.functions.createTrip(integrationInvalidTrip),
+    await atlasUser.functions.createTrip(integrationInvalidTrip),
   ).toStrictEqual({
     error: {
       invalidDates: 'Start date must be before end date',
@@ -72,7 +70,7 @@ test('cannot create an invalid trip', async () => {
 
 test('can create a valid trip', async () => {
   expect(
-      await atlasUser.functions.createTrip(integrationValidTrip),
+    await atlasUser.functions.createTrip(integrationValidTrip),
   ).toStrictEqual({
     success: true,
   });
@@ -83,10 +81,10 @@ test('can create a valid trip', async () => {
 
   expect(insertedTrip).toBeDefined();
   expect(insertedTrip).toEqual(
-      expect.objectContaining({
-        ...integrationValidTrip,
-        creatorId: new BSON.ObjectId(atlasUser.id),
-        tripMembers: [new BSON.ObjectId(atlasUser.id)],
-      }),
+    expect.objectContaining({
+      ...integrationValidTrip,
+      creatorId: new BSON.ObjectId(atlasUser.id),
+      tripMembers: [new BSON.ObjectId(atlasUser.id)],
+    }),
   );
 });
