@@ -40,6 +40,12 @@ beforeAll(async () => {
   atlasUser = await app.logIn(credentials);
 });
 
+afterEach(async () => {
+  await tripCollection.deleteMany({
+    tripName: integrationValidTrip.tripName,
+  });
+});
+
 afterAll(async () => {
   await userCollection.deleteMany({
     email: validAtlasUser.email,
