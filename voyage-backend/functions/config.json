@@ -11,6 +11,11 @@
   {
     "name": "inviteTripMember",
     "private": false,
+    "run_as_system": false
+  },
+  {
+    "name": "addTripToUserInvites",
+    "private": true,
     "run_as_system": true
   }
 ]
