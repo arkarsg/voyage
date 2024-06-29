@@ -11,7 +11,7 @@ async function addTripToUserInvites(tripId, invitedTripMemberId) {
     );
 
     return {
-      message: 'Trip invite added successfully.',
+      success: true,
     };
   } catch (err) {
     console.log('Error occurred while updating user invites:', err.message);
