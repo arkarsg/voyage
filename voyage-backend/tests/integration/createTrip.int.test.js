@@ -28,10 +28,6 @@ beforeAll(async () => {
   await mongoClient.connect();
   tripCollection = mongoClient.db(voyageDb).collection(tripsCollection);
   userCollection = mongoClient.db(voyageDb).collection(usersCollection);
-  await app.emailPasswordAuth.registerUser({
-    email: validAtlasUser.email,
-    password: validAtlasUser.password,
-  });
 
   const credentials = Realm.Credentials.emailPassword(
     validAtlasUser.email,
