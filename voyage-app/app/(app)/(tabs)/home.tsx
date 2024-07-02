@@ -11,9 +11,11 @@ export default function HomeTab(): React.JSX.Element {
       {currentTrip ? (
         <Text>{currentTrip.tripName}</Text>
       ) : (
-        <Text>You have not selected any trips</Text>
+        <>
+          <Text>You have not selected any trips</Text>
+          <CreateTripForm />
+        </>
       )}
-      <CreateTripForm />
     </YStack>
   );
 }
