@@ -5,7 +5,7 @@ import { Text } from 'tamagui';
 import DatePicker from './DatePickerModal';
 
 const DateField: React.FC<FormFieldProps> = ({ control, name, error, isRequired }) => {
-  const { field } = useController({ control, name: name });
+  const { field } = useController({ control, name: name }); // eslint-disable-line object-shorthand
 
   const handleStartDateChange = (newStartDate: Date | undefined): void => {
     console.log(newStartDate?.getDate());

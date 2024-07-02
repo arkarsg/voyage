@@ -42,9 +42,9 @@ export default function CreateTripForm(): React.JSX.Element {
 
     const newTrip = {
       _id: id,
-      tripName: tripName,
-      startDate: startDate,
-      endDate: endDate,
+      tripName: tripName, // eslint-disable-line object-shorthand
+      startDate: startDate, // eslint-disable-line object-shorthand
+      endDate: endDate, // eslint-disable-line object-shorthand
       tripDestination: dest,
       creatorId: creator,
       tripMembers: members,
