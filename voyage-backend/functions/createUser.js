@@ -32,9 +32,9 @@ Learn more about http client here: https://www.mongodb.com/docs/atlas/app-servic
  */
 async function addUserToCollection(authEvent) {
   const usersCollection = context.services
-      .get('mongodb-atlas')
-      .db('dev_voyage_app')
-      .collection('User');
+    .get('mongodb-atlas')
+    .db('dev_voyage_app')
+    .collection('User');
 
   const user = createUser(authEvent.user);
   try {

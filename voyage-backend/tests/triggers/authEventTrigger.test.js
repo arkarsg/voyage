@@ -22,7 +22,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await dbCollection.deleteMany({
-    email: validAtlasUser.email,
+    email: 'dummyUser@dummy.com',
   });
   await mongoClient.close();
 });
@@ -37,21 +37,21 @@ afterEach(async () => {
 
 test('emailPassword creates a user in User collection', async () => {
   await app.emailPasswordAuth.registerUser({
-    email: validAtlasUser.email,
-    password: validAtlasUser.password,
+    email: 'dummyUser@dummy.com',
+    password: '12345678',
   });
 
   const credentials = Realm.Credentials.emailPassword(
-      validAtlasUser.email,
-      validAtlasUser.password,
+    'dummyUser@dummy.com',
+    '12345678',
   );
 
   atlasUser = await app.logIn(credentials);
 
   const insertedUser = await dbCollection.findOne({
-    email: validAtlasUser.email,
+    email: 'dummyUser@dummy.com',
   });
 
   // Check that the Trigger creates a User in the User collection
-  expect(insertedUser.email).toBe(validAtlasUser.email);
+  expect(insertedUser.email).toBe('dummyUser@dummy.com');
 });
