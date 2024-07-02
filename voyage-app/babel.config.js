@@ -19,7 +19,25 @@
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
-    plugins: ['@realm/babel-plugin', ['@babel/plugin-proposal-decorators', { legacy: true }]],
+    presets: [['babel-preset-expo', { jsxRuntime: 'automatic' }]],
+    plugins: [
+      ['@babel/plugin-proposal-decorators', { legacy: true }],
+      [
+        require.resolve('babel-plugin-module-resolver'),
+        {
+          root: ['./app'],
+          extensions: ['.tsx', '.ts', '.json'],
+          alias: {
+            '@components': './app/components',
+            '@hooks': './app/hooks',
+            '@models': './app/models',
+            '@providers': './app/providers',
+            '@types': './app/types',
+          },
+        },
+      ],
+      'expo-router/babel',
+      'react-native-reanimated/plugin',
+    ],
   };
 };

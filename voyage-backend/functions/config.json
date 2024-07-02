@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "name": "createTrip",
+    "private": false
+  },
+  {
+    "name": "createUser",
+    "private": true,
+    "run_as_system": true
+  },
+  {
+    "name": "inviteTripMember",
+    "private": false,
+    "run_as_system": false
+  },
+  {
+    "name": "addTripToUserInvites",
+    "private": true,
+    "run_as_system": true
+  }
+]

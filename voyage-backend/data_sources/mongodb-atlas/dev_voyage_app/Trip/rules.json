@@ -1,0 +1,37 @@
+{
+  "database": "dev_voyage_app",
+  "collection": "Trip",
+  "roles": [
+    {
+      "name": "readAndWriteTrip",
+      "apply_when": {},
+      "document_filters": {
+        "read": {
+          "creatorId": {
+            "%stringToOid": "%%user.id"
+          },
+          "tripMembers": {
+            "%stringToOid": "%%user.id"
+          }
+        },
+        "write": {
+          "creatorId": {
+            "%stringToOid": "%%user.id"
+          },
+          "tripMembers": {
+            "%stringToOid": "%%user.id"
+          }
+        }
+      },
+      "insert": true,
+      "delete": {
+        "creatorId": {
+          "%stringToOid": "%%user.id"
+        }
+      },
+      "search": true,
+      "read": true,
+      "write": true
+    }
+  ]
+}

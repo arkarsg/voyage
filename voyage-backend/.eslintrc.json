@@ -1,14 +1,20 @@
 {
   "env": {
     "browser": true,
-    "commonjs": true,
     "es2021": true
   },
-  "extends": "google",
+  "extends": [],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
+  "ignorePatterns": [
+    "metro.config.js",
+    "babel.config.js",
+    "index.js",
+    "sync.config.js"
+  ],
   "rules": {
-    "object-curly-spacing": 0
+    "semi": [2, "always"]
   }
 }

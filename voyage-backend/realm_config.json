@@ -1,7 +1,8 @@
 {
-  "app_id": "voyage-app-kstim",
+  "app_id": "voyage-dev-nhiwc",
   "config_version": 20210101,
-  "name": "voyage-app",
+  "name": "voyage-dev",
+  "location": "SG",
   "provider_region": "aws-ap-southeast-1",
   "deployment_model": "LOCAL",
   "environment": "development"

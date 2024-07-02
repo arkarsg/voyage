@@ -22,6 +22,7 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.*
 
 # Logs
 logs
@@ -74,3 +75,6 @@ dist/
 
 # Jest
 **/coverage/
+
+# mongodb-realm
+**/mongodb-realm/
