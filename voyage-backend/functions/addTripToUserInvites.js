@@ -2,7 +2,7 @@ async function addTripToUserInvites(tripId, invitedTripMemberId) {
   const usersCollection = context.services
     .get('mongodb-atlas')
     .db('dev_voyage_app')
-    .collection('Users');
+    .collection('User');
 
   try {
     await usersCollection.updateOne(

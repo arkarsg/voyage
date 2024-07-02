@@ -7,7 +7,7 @@ async function inviteTripMember(tripId, invitedMemberId) {
   const usersCollection = context.services
     .get('mongodb-atlas')
     .db('dev_voyage_app')
-    .collection('Users');
+    .collection('User');
 
   try {
     // Check if the trip exists
@@ -20,7 +20,9 @@ async function inviteTripMember(tripId, invitedMemberId) {
       };
     }
 
-    const canInvite = trip && trip.tripMembers.includes(context.user.id);
+    const canInvite =
+      trip &&
+      trip.tripMembers.map((x) => x.toString()).includes(context.user.id);
 
     if (!canInvite) {
       return {
