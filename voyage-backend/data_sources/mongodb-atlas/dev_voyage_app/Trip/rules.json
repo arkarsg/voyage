@@ -27,10 +27,11 @@
       "delete": {
         "creatorId": {
           "%stringToOid": "%%user.id"
-        },
-        "search": true,
-        "read": true,
-        "write": true
-      }
-    ]
-  }
+        }
+      },
+      "search": true,
+      "read": true,
+      "write": true
+    }
+  ]
+}
