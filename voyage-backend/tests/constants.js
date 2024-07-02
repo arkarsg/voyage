@@ -7,9 +7,8 @@ const tripsCollection = 'Trip';
 
 // Valid user stub
 const validAtlasUser = {
-  username: 'tester',
-  email: 'tester@example.com',
-  password: 'Passw0rd!',
+  email: 'tester1@test.com',
+  password: 'tester1',
 };
 
 const integrationValidTrip = {

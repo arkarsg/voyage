@@ -25,11 +25,12 @@
       },
       "insert": true,
       "delete": {
-        "creatorId": "%%user.id"
-      },
-      "search": true,
-      "read": true,
-      "write": true
-    }
-  ]
-}
+        "creatorId": {
+          "%stringToOid": "%%user.id"
+        },
+        "search": true,
+        "read": true,
+        "write": true
+      }
+    ]
+  }

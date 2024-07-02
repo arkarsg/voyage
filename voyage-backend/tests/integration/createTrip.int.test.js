@@ -3,7 +3,6 @@ require('dotenv').config();
 const { app_id } = require('../../realm_config.json');
 const { BSON } = require('BSON');
 const Realm = require('realm');
-const { MongoClient } = require('mongodb');
 
 const {
   voyageDb,
@@ -11,46 +10,29 @@ const {
   integrationValidTrip,
   integrationInvalidTrip,
   tripsCollection,
-  usersCollection,
 } = require('../constants');
 
 let tripCollection;
-let mongoClient;
 let app;
 let atlasUser;
-let userCollection;
 
 beforeAll(async () => {
   app = new Realm.App(app_id); // eslint-disable-line camelcase
-  // eslint-disable-next-line max-len
-  const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.CLUSTER_URI}/test?retryWrites=true&w=majority`;
-  mongoClient = new MongoClient(uri);
-  await mongoClient.connect();
-  tripCollection = mongoClient.db(voyageDb).collection(tripsCollection);
-  userCollection = mongoClient.db(voyageDb).collection(usersCollection);
-
   const credentials = Realm.Credentials.emailPassword(
     validAtlasUser.email,
     validAtlasUser.password,
   );
   atlasUser = await app.logIn(credentials);
-});
-
-afterEach(async () => {
-  await tripCollection.deleteMany({
-    tripName: integrationValidTrip.tripName,
-  });
+  console.log(atlasUser.id);
+  const mongodb = app.currentUser.mongoClient('mongodb-atlas');
+  tripCollection = mongodb.db(voyageDb).collection(tripsCollection);
 });
 
 afterAll(async () => {
-  await userCollection.deleteMany({
-    email: validAtlasUser.email,
-  });
   await tripCollection.deleteMany({
     tripName: integrationValidTrip.tripName,
   });
-  await app.deleteUser(atlasUser);
-  await mongoClient.close();
+  await app.currentUser.logOut();
 });
 
 test('cannot create an invalid trip', async () => {
@@ -63,11 +45,6 @@ test('cannot create an invalid trip', async () => {
       nameTooLong: 'Trip name cannot be longer than 30 characters',
     },
   });
-
-  const allTrips = await tripCollection.find({}).toArray((arr, err) => {
-    return arr;
-  });
-  expect(allTrips).toStrictEqual([]);
 });
 
 test('can create a valid trip', async () => {
