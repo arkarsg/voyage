@@ -1,20 +1,23 @@
 import React, { createContext, useEffect, useState, useContext } from 'react';
 import type Realm from 'realm';
-import { useRealm, useQuery } from '@realm/react';
+import { useRealm, useQuery, useUser } from '@realm/react';
 import { type Subscription } from 'realm/dist/bundle';
 import { Trip } from '@models/Trip';
+import { BSON } from 'realm';
 
 interface ITripContext {
   currentTrip: Trip | null | undefined;
   tripSubscription: Subscription | null | undefined;
   trips: Realm.Results<Trip>;
   setCurrentTripById: (tripId: string) => void;
+  inviteUserToTrip: (inviteeId: string) => Promise<void>;
 }
 
 const TripContext = createContext<ITripContext | null>(null);
 
 const TripProvider = (props: React.PropsWithChildren): React.JSX.Element => {
   const realm = useRealm();
+  const user = useUser();
   const [tripSubscription, setTripSubscription] = useState<Subscription | null>();
   const trips = useQuery(Trip, (collection) => collection.sorted('startDate'), []);
   const [currentTrip, setCurrentTrip] = useState<Trip | null | undefined>(trips.at(0));
@@ -36,8 +39,22 @@ const TripProvider = (props: React.PropsWithChildren): React.JSX.Element => {
     setCurrentTrip(selectedTrip ?? null);
   };
 
+  const inviteUserToTrip = async (inviteeId: string): Promise<void> => {
+    if (currentTrip) {
+      await user?.functions.inviteTripMember(currentTrip._id, new BSON.ObjectId(inviteeId));
+    }
+  };
+
   return (
-    <TripContext.Provider value={{ currentTrip, tripSubscription, trips, setCurrentTripById }}>
+    <TripContext.Provider
+      value={{
+        currentTrip,
+        tripSubscription,
+        trips,
+        setCurrentTripById,
+        inviteUserToTrip,
+      }}
+    >
       {props.children}
     </TripContext.Provider>
   );
